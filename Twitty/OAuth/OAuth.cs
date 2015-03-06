@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Twitty.OAuth
 {
@@ -8,9 +9,10 @@ namespace Twitty.OAuth
         public static GettingOAuthTokens GetRequestToken(string consumerKey, string consumerSecret,
             string callbackAddress)
         {
-            var webRequestBuilder = new WebRequestBuilder(new Uri("https://api.twitter.com/oauth/request_token"), HTTPVerb.POST, new OAuthTokens { ConsumerKey = consumerKey, ConsumerSecret = consumerSecret });
+            var webRequestBuilder = new WebRequestBuilder(new Uri("https://api.twitter.com/oauth/request_token"),
+                HTTPVerb.POST, new OAuthTokens {ConsumerKey = consumerKey, ConsumerSecret = consumerSecret});
             var result = string.Empty;
-            var httpWebResponse = webRequestBuilder.Response;
+            var httpWebResponse = webRequestBuilder.ExecutedRequest;
             var stream = httpWebResponse.GetResponseStream();
             if (stream != null)
             {
@@ -27,7 +29,9 @@ namespace Twitty.OAuth
 
         private static string ParseQuerystringParameter(string parametrName, string data)
         {
-            throw new NotImplementedException();
+            var expression = Regex.Match(data, string.Format(@"{0}=(?<value>[^&]+)", parametrName));
+
+            return !expression.Success ? string.Empty : expression.Groups["value"].Value;
         }
     }
 }
