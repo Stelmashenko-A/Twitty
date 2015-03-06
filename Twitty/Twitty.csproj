@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="OAuth\HTTPVerb.cs" />
     <Compile Include="OAuth\GettingOAuthTokens.cs" />
+    <Compile Include="OAuth\OAuth.cs" />
     <Compile Include="OAuth\OAuthTokens.cs" />
     <Compile Include="OAuth\WebRequestBuilder.cs" />
     <Compile Include="Program.cs" />

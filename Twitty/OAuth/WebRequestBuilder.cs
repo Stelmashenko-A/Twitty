@@ -49,6 +49,7 @@ namespace Twitty.OAuth
         private NetworkCredential _networkCredentials;
 
         public bool UseOAuth { get; private set; }
+        public HttpWebResponse Response { get; set; }
 
         public WebRequestBuilder(Uri requestUri, HTTPVerb verb, String userAgent, NetworkCredential networkCredentials)
         {
@@ -77,6 +78,13 @@ namespace Twitty.OAuth
             }
 
             RequestUri = new Uri(RequestUri.AbsoluteUri.Replace(RequestUri.Query, ""));
+        }
+
+        public WebRequestBuilder(Uri requestUri, HTTPVerb verb, OAuthTokens tokens, string userAgent = "")
+            : this(requestUri, verb, userAgent, null)
+        {
+            Tokens = tokens;
+            UseOAuth = true;
         }
     }
 }
