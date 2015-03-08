@@ -9,8 +9,9 @@ namespace Twitty.Kernel
 
         public Account()
         {
-            var gettingOAuthTokens = OAuth.OAuth.GetRequestToken("myKey",
-                "mySecret",null);
+            var gettingOAuthTokens = OAuth.OAuth.GetRequestToken("myToken",
+                "myTokeSecret", null);
+            OAuth.OAuth.GetOauthVerifier(gettingOAuthTokens, new DataReader());
         }
     }
 
