@@ -8,3 +8,4 @@ C:\Users\Андрей\Documents\GitHubLabs\Twitty\Twitty\obj\Debug\Twitty.Proper
 C:\Users\Андрей\Documents\GitHubLabs\Twitty\Twitty\obj\Debug\Twitty.csproj.GenerateResource.Cache
 C:\Users\Андрей\Documents\GitHubLabs\Twitty\Twitty\obj\Debug\Twitty.exe
 C:\Users\Андрей\Documents\GitHubLabs\Twitty\Twitty\obj\Debug\Twitty.pdb
+C:\Users\Андрей\Documents\GitHubLabs\Twitty\Twitty\obj\Debug\Twitty.Utility.InputBox.resources

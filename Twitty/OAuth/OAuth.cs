@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
+using Twitty.Kernel;
 
 namespace Twitty.OAuth
 {
@@ -35,11 +36,11 @@ namespace Twitty.OAuth
             return !expression.Success ? string.Empty : expression.Groups["value"].Value;
         }
 
-        public static void GetOauthVerifier(GettingOAuthTokens tokens, Kernel.IDataReader dataReader)
+        public static void GetOauthVerifier(GettingOAuthTokens tokens, IDataReader dataReader)
         {
             var requestUrl = "http://api.twitter.com/oauth/authorize?oauth_token=" + tokens.Token;
-            System.Diagnostics.Process.Start(requestUrl);
-            dataReader.ShowDialog();
+            Process.Start(requestUrl);
+            dataReader.Show();
             tokens.VerificationString = dataReader.Data;
 
         }

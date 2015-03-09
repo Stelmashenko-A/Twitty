@@ -1,5 +1,6 @@
 using System.Security.Policy;
 using Twitty.OAuth;
+using Twitty.Utility;
 
 namespace Twitty.Kernel
 {
@@ -11,7 +12,7 @@ namespace Twitty.Kernel
         {
             var gettingOAuthTokens = OAuth.OAuth.GetRequestToken("myToken",
                 "myTokeSecret", null);
-            OAuth.OAuth.GetOauthVerifier(gettingOAuthTokens, new DataReader());
+            OAuth.OAuth.GetOauthVerifier(gettingOAuthTokens, new InputBox());
         }
     }
 
