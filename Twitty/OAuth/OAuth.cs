@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
 using Twitty.Kernel;
 
 namespace Twitty.OAuth
 {
-    class OAuth
+    internal class OAuth
     {
         public static GettingOAuthTokens GetRequestToken(string consumerKey, string consumerSecret,
             string callbackAddress)
@@ -43,6 +44,28 @@ namespace Twitty.OAuth
             dataReader.Show();
             tokens.VerificationString = dataReader.Data;
 
+        }
+
+        public static GettingOAuthTokens GetAccessTokens(string consumerKey, string consumerSecret, string requestToken,
+            string verifier)
+        {
+            var webRequestBuilder = new WebRequestBuilder(new Uri("https://api.twitter.com/oauth/access_token"),
+                HTTPVerb.POST, new OAuthTokens {ConsumerKey = consumerKey, ConsumerSecret = consumerSecret});
+            webRequestBuilder.Parameters.Add("oauth_verifier", verifier);
+            webRequestBuilder.Parameters.Add("oauth_token", requestToken);
+
+            var webResponse = webRequestBuilder.ExecutedRequest;
+            var twitterAnswer = new StreamReader(webResponse.GetResponseStream()).ReadToEnd();
+            var response = new GettingOAuthTokens
+            {
+                Token = Regex.Match(twitterAnswer, @"oauth_token=([^&]+)").Groups[1].Value,
+                TokenSecret = Regex.Match(twitterAnswer, @"oauth_token_secret=([^&]+)").Groups[1].Value,
+                UserId =
+                    long.Parse(Regex.Match(twitterAnswer, @"user_id=([^&]+)").Groups[1].Value,
+                        CultureInfo.CurrentCulture),
+                ScreenName = Regex.Match(twitterAnswer, @"screen_name=([^&]+)").Groups[1].Value
+            };
+            return response;
         }
     }
 }

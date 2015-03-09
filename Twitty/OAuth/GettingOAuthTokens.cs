@@ -1,4 +1,6 @@
 ﻿
+using System.IO;
+
 namespace Twitty.OAuth
 {
     class GettingOAuthTokens
@@ -26,6 +28,17 @@ namespace Twitty.OAuth
         public string VerificationString
         {
             get; set;
+        }
+
+        public void Save(string fileName)
+        {
+            var sw = new StreamWriter(fileName);
+            sw.WriteLine(Token);
+            sw.WriteLine(TokenSecret);
+            sw.WriteLine(ScreenName);
+            sw.WriteLine(UserId);
+            sw.WriteLine(VerificationString);
+            sw.Close();
         }
     }
 }

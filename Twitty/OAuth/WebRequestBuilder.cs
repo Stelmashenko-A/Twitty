@@ -38,6 +38,11 @@ namespace Twitty.OAuth
 
         public HTTPVerb Verb { get; set; }
 
+        private GettingOAuthTokens _gettingOAuthTokens
+        {
+            get; set;
+        }
+
         public bool UseOAuth { get; private set; }
 
         public HttpWebResponse ExecutedRequest
@@ -128,6 +133,11 @@ namespace Twitty.OAuth
             Tokens = tokens;
         }
 
+        public WebRequestBuilder(Uri requestUri, HTTPVerb verb, OAuthTokens oAuthTokensokens, GettingOAuthTokens gettingOAuthTokens)
+            : this(requestUri, verb, oAuthTokensokens)
+        {
+            _gettingOAuthTokens = gettingOAuthTokens;
+        }
         private void SetupParametrs()
         {
             //Initialize parametres of request

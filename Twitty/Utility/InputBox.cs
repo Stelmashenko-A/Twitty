@@ -1,41 +1,16 @@
-﻿using System;
-using System.Windows.Forms;
-
+﻿
 namespace Twitty.Utility
 {
-    public partial class InputBox : Form, Kernel.IDataReader
+    class InputBox:Kernel.IDataReader
     {
-        private static InputBox _newInputBox;
-        private static string _returnString;
-
-        public InputBox()
-        {
-            InitializeComponent();
+        public string Data 
+        { 
+            get; set;
         }
 
-        public static string Show(string inputBoxText)
+        public void Show()
         {
-            _newInputBox = new InputBox {label = {Text = inputBoxText}};
-            _newInputBox.ShowDialog();
-            return _returnString;
-        }
-
-        private void buttonOk_Click(object sender, EventArgs e)
-        {
-            _returnString = textBox.Text;
-            _newInputBox.Dispose();
-        }
-
-        private void buttonCancel_Click(object sender, EventArgs e)
-        {
-            _returnString = string.Empty;
-            _newInputBox.Dispose();
-        }
-
-        public string Data
-        {
-            get { return _returnString; }
-            set { throw new NotImplementedException(); }
+            Data = Microsoft.VisualBasic.Interaction.InputBox("Введите Pin", "Ввод Pin", "", 100, 100);
         }
     }
 }
