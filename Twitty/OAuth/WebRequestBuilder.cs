@@ -12,6 +12,10 @@ namespace Twitty.OAuth
     internal class WebRequestBuilder
     {
         public const string Api = "Twitter API";
+        public bool AddRealm = true;
+        public bool AddUserAgent = true;
+        
+        
         private static readonly string[] PublicParameters = {
             "oauth_consumer_secret",
             "oauth_signature",
@@ -68,9 +72,11 @@ namespace Twitty.OAuth
                 request.UseDefaultCredentials = true;
                 request.Method = Verb.ToString();
                 request.ContentLength = 0;
-                request.UserAgent = string.Format(CultureInfo.InvariantCulture, "Twitty/{0}",
+                if (AddUserAgent)
+                {
+                    request.UserAgent = string.Format(CultureInfo.InvariantCulture, "Twitty/{0}",
                         System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
-
+                }
                 request.ServicePoint.Expect100Continue = false;
                 request.Headers.Add("Authorization", GenerateAuthorizationHeader());
 
@@ -82,7 +88,10 @@ namespace Twitty.OAuth
         {
            
             var authHeaderBuilder = new StringBuilder();
-            authHeaderBuilder.AppendFormat("OAuth realm=\"{0}\"", Api);
+            if (AddRealm)
+            {
+                authHeaderBuilder.AppendFormat("OAuth realm=\"{0}\"", Api);
+            }
             //By OAuth protocol parameters must be sorted in lexicographic order
             var sortedParameters = from p in Parameters
                                    where ParametersInHeader.Contains(p.Key)
@@ -97,7 +106,10 @@ namespace Twitty.OAuth
                     UrlEncode((string)value.Value ));
             }
             //By OAuth protocol there is signature after parametres
-            authHeaderBuilder.AppendFormat(",oauth_signature=\"{0}\"", UrlEncode((string)Parameters["oauth_signature"] ));
+
+                authHeaderBuilder.AppendFormat(",oauth_signature=\"{0}\"",
+                    UrlEncode((string) Parameters["oauth_signature"]));
+
 
             return authHeaderBuilder.ToString();
         }
@@ -140,17 +152,24 @@ namespace Twitty.OAuth
         }
         private void SetupParametrs()
         {
-            //Initialize parametres of request
-            Parameters.Add("oauth_consumer_key", Tokens.ConsumerKey);
-            Parameters.Add("oauth_consumer_secret", Tokens.ConsumerSecret);
-            Parameters.Add("oauth_nonce", GenerateNonce());
-            Parameters.Add("oauth_signature_method", "HMAC-SHA1");
-            Parameters.Add("oauth_timestamp", GenerateTimeStamp());
-            Parameters.Add("oauth_version", "1.0");
+            try
+            {
+                //Initialize parametres of request
+                Parameters.Add("oauth_consumer_key", Tokens.ConsumerKey);
+                Parameters.Add("oauth_consumer_secret", Tokens.ConsumerSecret);
+                Parameters.Add("oauth_nonce", GenerateNonce());
+                Parameters.Add("oauth_signature_method", "HMAC-SHA1");
+                Parameters.Add("oauth_timestamp", GenerateTimeStamp());
+                Parameters.Add("oauth_version", "1.0");
 
-            //Signature generation with using parametres
-            var signature = GenerateSignature();
-            Parameters.Add("oauth_signature", signature);
+                //Signature generation with using parametres
+                var signature = GenerateSignature();
+                Parameters.Add("oauth_signature", signature);
+            }
+            catch (Exception e)
+            {
+                
+            }
         }
 
         /*The oauth_nonce parameter is a unique token your application

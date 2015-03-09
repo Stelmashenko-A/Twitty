@@ -33,8 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\TwitterAccount.cs" />
+    <Compile Include="Account\TwitterResponse.cs" />
+    <Compile Include="Account\TwitterUserCollection.cs" />
+    <Compile Include="Kernel\TwitterCollection.cs" />
+    <Compile Include="Account\TwitterStatus.cs" />
+    <Compile Include="Account\TwitterUser.cs" />
     <Compile Include="Kernel\Account.cs" />
     <Compile Include="Kernel\IDataReader.cs" />
     <Compile Include="MainWindow.cs">

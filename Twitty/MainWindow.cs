@@ -17,7 +17,7 @@ namespace Twitty
         public MainWindow()
         {
             InitializeComponent();
-            var account = new Account();
+            var account = new Kernel.Account();
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
