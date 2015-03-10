@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Text;
 using Twitty.Account;
 using Twitty.Kernel;
 using Twitty.OAuth;
@@ -13,31 +11,28 @@ namespace Twitty.Commands
     {
         public Dictionary<string, object> Parameters { get; set; }
 
-        byte[] responseData;
+        byte[] _responseData;
 
-        public void Initialize()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void Initialize();
 
         public TwitterResponse<T> ExecuteCommand()
         {
             var twitterResponse = new TwitterResponse<T>();
+            Uri = new Uri(Uri.AbsoluteUri.Replace("http://", "https://"));
+
             var parameters = Parameters.ToDictionary(value => value.Key, value => value.Value);
             twitterResponse.ResponseObject = default(T);
-            twitterResponse.RequestUrl = _uri.AbsoluteUri;
+            twitterResponse.RequestUrl = Uri.AbsoluteUri;
             try
             {
-                var requestBuilder = new WebRequestBuilder(_uri, _verb, Tokens);
+                var requestBuilder = new WebRequestBuilder(Uri, Verb, Tokens);
+                requestBuilder.Parameters.Clear();
                 foreach (var value in parameters)
                 {
                     requestBuilder.Parameters.Add(value.Key, value.Value);
                 }
-                var response = requestBuilder.ExecutedRequest;
-
-
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 
                 throw;
@@ -47,16 +42,17 @@ namespace Twitty.Commands
 
         public OAuthTokens Tokens { get; private set; }
 
-        private HTTPVerb _verb { get; set; }
+        private HTTPVerb Verb { get; set; }
 
-        private Uri _uri { get; set; }
+        private Uri Uri { get; set; }
 
-        protected CommandToTwitter(HTTPVerb method, string endPoint, OAuthTokens tokens)
+        protected CommandToTwitter(HTTPVerb method, string endPoint, OAuthTokens tokens, byte[] responseData)
         {
             Parameters = new Dictionary<string, object>();
-            _verb = method;
+            Verb = method;
             Tokens = tokens;
-            _uri = new Uri(endPoint);
+            _responseData = responseData;
+            Uri = new Uri(endPoint);
         }
     }
 }

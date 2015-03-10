@@ -1,5 +1,4 @@
-﻿
-namespace Twitty.Utility
+﻿namespace Twitty.Utility
 {
     class InputBox:Kernel.IDataReader
     {

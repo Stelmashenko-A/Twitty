@@ -1,5 +1,4 @@
-﻿
-namespace Twitty.Kernel
+﻿namespace Twitty.Kernel
 {
     interface IDataReader
     {

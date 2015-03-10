@@ -10,10 +10,15 @@ namespace Twitty.Commands
             get; set;
         }
 
-        public CommandForStatusUpdating(OAuth.OAuthTokens tokens, string text)
+        public CommandForStatusUpdating(OAuthTokens tokens, string text)
             : base(HTTPVerb.POST, "https://api.twitter.com/1.1/statuses/update.json", tokens)
         {
             Text = text;
+        }
+
+        public override void Initialize()
+        {
+            Parameters.Add("status", Text);
         }
     }
 }

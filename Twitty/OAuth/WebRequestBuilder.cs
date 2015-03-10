@@ -42,7 +42,7 @@ namespace Twitty.OAuth
 
         public HTTPVerb Verb { get; set; }
 
-        private GettingOAuthTokens _gettingOAuthTokens
+        private GettingOAuthTokens GettingOAuthTokens
         {
             get; set;
         }
@@ -148,7 +148,7 @@ namespace Twitty.OAuth
         public WebRequestBuilder(Uri requestUri, HTTPVerb verb, OAuthTokens oAuthTokensokens, GettingOAuthTokens gettingOAuthTokens)
             : this(requestUri, verb, oAuthTokensokens)
         {
-            _gettingOAuthTokens = gettingOAuthTokens;
+            GettingOAuthTokens = gettingOAuthTokens;
         }
         private void SetupParametrs()
         {
@@ -161,14 +161,22 @@ namespace Twitty.OAuth
                 Parameters.Add("oauth_signature_method", "HMAC-SHA1");
                 Parameters.Add("oauth_timestamp", GenerateTimeStamp());
                 Parameters.Add("oauth_version", "1.0");
+                if (!string.IsNullOrEmpty(Tokens.AccessToken))
+                {
+                    Parameters.Add("oauth_token", Tokens.AccessToken);
+                }
 
+                if (!string.IsNullOrEmpty(Tokens.AccessTokenSecret))
+                {
+                    Parameters.Add("oauth_token_secret", Tokens.AccessTokenSecret);
+                }
                 //Signature generation with using parametres
                 var signature = GenerateSignature();
                 Parameters.Add("oauth_signature", signature);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                
+                // ignored
             }
         }
 

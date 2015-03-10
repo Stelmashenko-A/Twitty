@@ -52,6 +52,7 @@
     <Compile Include="Account\TwitterResponse.cs" />
     <Compile Include="Account\TwitterUserCollection.cs" />
     <Compile Include="Commands\CommandForStatusUpdating.cs" />
+    <Compile Include="Commands\CommandPerfomer.cs" />
     <Compile Include="Commands\CommandToTwitter.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Kernel\ITwitterObject.cs" />
