@@ -1,3 +1,4 @@
+using Twitty.Account;
 using Twitty.OAuth;
 using Twitty.Utility;
 
@@ -9,11 +10,16 @@ namespace Twitty.Kernel
 
         public Account()
         {
-            var gettingOAuthTokens = OAuth.OAuth.GetRequestToken("khfn1j8qJA0Bp5492LOQOZXWD",
-                "T7ptoDPnItslpXTDoDNmjcL3CMEBX4JwNoARGxlBGqir2jp25R", null);
+            var gettingOAuthTokens = OAuth.OAuth.GetRequestToken("qwer",
+                "qwer", null);
             OAuth.OAuth.GetOauthVerifier(gettingOAuthTokens, new InputBox());
-            gettingOAuthTokens = OAuth.OAuth.GetAccessTokens("khfn1j8qJA0Bp5492LOQOZXWD", "T7ptoDPnItslpXTDoDNmjcL3CMEBX4JwNoARGxlBGqir2jp25R", gettingOAuthTokens.Token, gettingOAuthTokens.VerificationString);
+            gettingOAuthTokens = OAuth.OAuth.GetAccessTokens("qwer", "qwert", gettingOAuthTokens.Token, gettingOAuthTokens.VerificationString);
             gettingOAuthTokens.Save("data.txt");
+            tokens.AccessToken = gettingOAuthTokens.Token;
+            tokens.AccessTokenSecret = gettingOAuthTokens.TokenSecret;
+            tokens.ConsumerKey = "qwert";
+            tokens.ConsumerSecret = "qwerty";
+            TwitterStatus.Update(tokens, "twit");
         }
     }
 

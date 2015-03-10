@@ -1,12 +1,19 @@
-﻿using System.Data;
+﻿using System;
+using Twitty.Commands;
+using Twitty.Kernel;
+using Twitty.OAuth;
 
 namespace Twitty.Account
 {
-    internal class TwitterStatus
+    internal class TwitterStatus : ITwitterObject
     {
-        public static TwitterResponse<TwitterStatus> Update(OAuth.OAuthTokens tokens, string text)
+        public static TwitterResponse<TwitterStatus> Update(OAuthTokens tokens, string text)
         {
-            throw new System.NotImplementedException();
+            var command = new CommandForStatusUpdating(tokens, text);
+            throw new NotImplementedException();
+            return new TwitterResponse<TwitterStatus>();
+
         }
+
     }
 }

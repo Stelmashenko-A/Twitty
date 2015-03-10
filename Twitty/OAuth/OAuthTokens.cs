@@ -1,6 +1,6 @@
 ﻿namespace Twitty.OAuth
 {
-    class OAuthTokens
+    public class OAuthTokens
     {
         public string ConsumerKey
         {
