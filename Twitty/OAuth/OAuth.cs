@@ -55,7 +55,8 @@ namespace Twitty.OAuth
             webRequestBuilder.Parameters.Add("oauth_token", requestToken);
 
             var webResponse = webRequestBuilder.ExecutedRequest;
-            var twitterAnswer = new StreamReader(webResponse.GetResponseStream()).ReadToEnd();
+            // ReSharper disable once AssignNullToNotNullAttribute
+            var twitterAnswer = new StreamReader(stream: webResponse.GetResponseStream()).ReadToEnd();
             var response = new GettingOAuthTokens
             {
                 Token = Regex.Match(twitterAnswer, @"oauth_token=([^&]+)").Groups[1].Value,

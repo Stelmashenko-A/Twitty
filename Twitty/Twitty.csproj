@@ -51,11 +51,13 @@
     <Compile Include="Account\TwitterAccount.cs" />
     <Compile Include="Account\TwitterResponse.cs" />
     <Compile Include="Account\TwitterUserCollection.cs" />
+    <Compile Include="Commands\ComandToGetStatuses.cs" />
     <Compile Include="Commands\CommandForStatusUpdating.cs" />
     <Compile Include="Commands\CommandPerfomer.cs" />
     <Compile Include="Commands\CommandToTwitter.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Kernel\ITwitterObject.cs" />
+    <Compile Include="Kernel\Options.cs" />
     <Compile Include="Kernel\TwitterCollection.cs" />
     <Compile Include="Account\TwitterStatus.cs" />
     <Compile Include="Account\TwitterUser.cs" />
@@ -74,6 +76,8 @@
     <Compile Include="OAuth\WebRequestBuilder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tweets\OptionsForStatusesRequest.cs" />
+    <Compile Include="Tweets\StatusCollection.cs" />
     <Compile Include="Utility\InputBox.cs" />
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>

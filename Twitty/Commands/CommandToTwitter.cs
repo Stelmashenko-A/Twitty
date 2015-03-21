@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using Twitty.Account;
 using Twitty.Kernel;
 using Twitty.OAuth;
@@ -30,13 +31,16 @@ namespace Twitty.Commands
                 foreach (var value in parameters)
                 {
                     requestBuilder.Parameters.Add(value.Key, value.Value);
+
                 }
+                HttpWebResponse resp = requestBuilder.ExecutedRequest;
             }
             catch (Exception e)
             {
                 
                 throw;
             }
+            
             return twitterResponse;
         }
 

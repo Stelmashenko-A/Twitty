@@ -8,12 +8,12 @@ namespace Twitty.Kernel
         public Account()
         {
             var tokens = new OAuthTokens();
-            tokens.ConsumerKey = "asdf";
-            tokens.ConsumerSecret = "asdf";
-            tokens.AccessToken = "asdf";
-            tokens.AccessTokenSecret = "asdf"; 
+            tokens.ConsumerKey = "p8EhMYTOxPcyoJAuJ0kABxITI";
+            tokens.ConsumerSecret = "CfQN1xCgfCWBeFDIYx2WG1Jf4sFlByB5fxAl0VKMUfsolnby1n";
+            tokens.AccessToken = "2765688547-vun5RgYHxZ28ru7MShpaDtMedZQX2DopGesRYEb";
+            tokens.AccessTokenSecret = "hov1Q58KnL5g7ztMEd0KaY3R75Y8LrQBiIYdZPvw7pbCd"; 
 
-            TwitterStatus.Update(tokens, "Status has been updated through the API");
+            TwitterStatus.Update(tokens, "AZAZAZa");
         }
     }
 

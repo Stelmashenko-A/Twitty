@@ -11,7 +11,7 @@ namespace Twitty.Commands
         }
 
         public CommandForStatusUpdating(OAuthTokens tokens, string text)
-            : base(HTTPVerb.POST, "https://api.twitter.com/1.1/statuses/update.json", tokens)
+            : base(HTTPVerb.POST, "https://api.twitter.com/1.1/statuses/update.json", tokens, null)
         {
             Text = text;
         }
