@@ -4,9 +4,9 @@ using Twitty.OAuth;
 
 namespace Twitty.Account
 {
-    internal class TwitterStatus : ITwitterObject
+    internal class Status : ITwitterObject
     {
-        public static TwitterResponse<TwitterStatus> Update(OAuthTokens tokens, string text)
+        public static Response<Status> Update(OAuthTokens tokens, string text)
         {
             var command = new CommandForStatusUpdating(tokens, text);
             return CommandPerfomer.PerformCommand(command);

@@ -1,10 +1,10 @@
 ﻿
 namespace Twitty.Account
 {
-    class TwitterUser
+    class User
     {
         public decimal Id { get; set; }
-        public TwitterStatus Status { get; set; }
+        public Status Status { get; set; }
         public string ScreenName { get; set; }
     }
 }

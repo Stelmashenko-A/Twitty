@@ -1,9 +1,10 @@
 ﻿using Twitty.Account;
 using Twitty.OAuth;
+using Twitty.Options;
 
 namespace Twitty.Commands
 {
-    class CommandForStatusUpdating:CommandToTwitter<TwitterStatus>
+    class CommandForStatusUpdating:CommandToTwitter<Status>
     {
         public string Text
         {
@@ -11,7 +12,7 @@ namespace Twitty.Commands
         }
 
         public CommandForStatusUpdating(OAuthTokens tokens, string text)
-            : base(HTTPVerb.POST, "https://api.twitter.com/1.1/statuses/update.json", tokens, null)
+            : base(HTTPVerb.POST, "https://api.twitter.com/1.1/statuses/update.json", tokens, (TwitterOptions) null)
         {
             Text = text;
         }

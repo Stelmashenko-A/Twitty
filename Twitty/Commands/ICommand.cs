@@ -11,7 +11,7 @@ namespace Twitty.Commands
         
         void Initialize();
 
-        TwitterResponse<T> ExecuteCommand();
+        Response<T> ExecuteCommand();
 
     }
 }

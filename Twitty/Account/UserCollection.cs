@@ -2,7 +2,7 @@
 
 namespace Twitty.Account
 {
-    class TwitterUserCollection:TwitterCollection<TwitterUser>
+    class UserCollection:TwitterCollection<User>
     {
     }
 }

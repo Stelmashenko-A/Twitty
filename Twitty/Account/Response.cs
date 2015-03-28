@@ -2,7 +2,7 @@
 
 namespace Twitty.Account
 {
-    public class TwitterResponse<T>
+    public class Response<T>
     {
         public T ResponseObject { get; set; }
         public string RequestUrl { get; set; }

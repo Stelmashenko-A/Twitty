@@ -5,7 +5,7 @@ namespace Twitty.Commands
 {
     class CommandPerfomer
     {
-        public static TwitterResponse<T> PerformCommand<T>(ICommand<T> command)
+        public static Response<T> PerformCommand<T>(ICommand<T> command)
             where T : ITwitterObject
         {
             command.Initialize();

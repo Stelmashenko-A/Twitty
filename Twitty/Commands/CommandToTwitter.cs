@@ -11,14 +11,15 @@ namespace Twitty.Commands
     internal abstract class CommandToTwitter<T> : ICommand<T> where T : ITwitterObject
     {
         public Dictionary<string, object> Parameters { get; set; }
+        protected Options.TwitterOptions Options { get; set; }
 
         byte[] _responseData;
 
         public abstract void Initialize();
 
-        public TwitterResponse<T> ExecuteCommand()
+        public Response<T> ExecuteCommand()
         {
-            var twitterResponse = new TwitterResponse<T>();
+            var twitterResponse = new Response<T>();
             Uri = new Uri(Uri.AbsoluteUri.Replace("http://", "https://"));
 
             var parameters = Parameters.ToDictionary(value => value.Key, value => value.Value);
@@ -33,6 +34,8 @@ namespace Twitty.Commands
                     requestBuilder.Parameters.Add(value.Key, value.Value);
 
                 }
+                //Never delete next string: "HttpWebResponse resp = requestBuilder.ExecutedRequest;"
+                //ignor ReSharper here
                 HttpWebResponse resp = requestBuilder.ExecutedRequest;
             }
             catch (Exception e)
@@ -56,6 +59,21 @@ namespace Twitty.Commands
             Verb = method;
             Tokens = tokens;
             _responseData = responseData;
+            Uri = new Uri(endPoint);
+        }
+        protected CommandToTwitter(HTTPVerb method, string endPoint, OAuthTokens tokens, Options.TwitterOptions options)
+        {
+            Parameters = new Dictionary<string, object>();
+            Verb = method;
+            Tokens = tokens;
+            Options = options ?? new Options.TwitterOptions();
+            SetCommandUri(endPoint);
+        }
+        protected void SetCommandUri(string endPoint)
+        {
+            if (endPoint.StartsWith("/"))
+                throw new ArgumentException("The API endpoint cannot begin with a forward slash. This will result in 404 errors and headaches.", "endPoint");
+
             Uri = new Uri(endPoint);
         }
     }
