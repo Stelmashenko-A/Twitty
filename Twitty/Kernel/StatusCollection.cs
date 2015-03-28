@@ -7,7 +7,7 @@ using Twitty.Account;
 
 namespace Twitty.Kernel
 {
-    class StatusCollection:TwitterCollection<Status>
+    class StatusCollection:TwitterCollection<Status>, ITwitterObject
     {
     }
 }
