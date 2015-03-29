@@ -2,7 +2,7 @@
 
 namespace Twitty.Options
 {
-    class TwitterOptions
+    public class TwitterOptions
     {
         public bool UseSsl { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace Twitty.Options
 {
-    class UserTimelineOptions:TimeLineOptions
+    public class UserTimelineOptions:TimeLineOptions
     {
         public decimal UserId { get; set; }
 

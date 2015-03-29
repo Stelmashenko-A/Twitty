@@ -3,7 +3,7 @@ using Twitty.Kernel;
 
 namespace Twitty.Options
 {
-    internal class TimeLineOptions : TwitterOptions
+    public class TimeLineOptions : TwitterOptions
     {
         public decimal SinceStatusId { get; set; }
 

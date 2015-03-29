@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\TimeLine.cs" />
     <Compile Include="Account\TwitterAccount.cs" />
     <Compile Include="Account\Response.cs" />
     <Compile Include="Account\UserCollection.cs" />
