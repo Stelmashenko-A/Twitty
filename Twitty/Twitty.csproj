@@ -58,10 +58,12 @@
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\PagedTimelineCommand.cs" />
     <Compile Include="Commands\UserTimelineCommand.cs" />
+    <Compile Include="Geo\Coordinate.cs" />
+    <Compile Include="Geo\TwitterGeo.cs" />
     <Compile Include="Kernel\ITwitterObject.cs" />
     <Compile Include="Kernel\StatusCollection.cs" />
     <Compile Include="Kernel\TwitterCollection.cs" />
-    <Compile Include="Account\Status.cs" />
+    <Compile Include="Account\Tweet.cs" />
     <Compile Include="Account\User.cs" />
     <Compile Include="Kernel\Account.cs" />
     <Compile Include="Kernel\IDataReader.cs" />

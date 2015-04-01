@@ -4,7 +4,7 @@ using Twitty.Options;
 
 namespace Twitty.Commands
 {
-    class CommandForStatusUpdating:CommandToTwitter<Status>
+    class CommandForStatusUpdating:CommandToTwitter<Tweet>
     {
         public string Text
         {

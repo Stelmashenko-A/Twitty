@@ -14,7 +14,7 @@ namespace Twitty.Kernel
             tokens.AccessToken = "";
             tokens.AccessTokenSecret = ""; 
 
-            Status.Update(tokens, "AZAZAZa");
+            Tweet.Update(tokens, "AZAZAZa");
             var options = new UserTimelineOptions()
             {
                 ScreenName = "__BuS_TeR__",

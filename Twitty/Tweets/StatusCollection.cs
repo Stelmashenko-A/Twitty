@@ -3,7 +3,7 @@ using Twitty.Kernel;
 
 namespace Twitty.Tweets
 {
-    class StatusCollection : TwitterCollection<Status>, ITwitterObject
+    class StatusCollection : TwitterCollection<Tweet>, ITwitterObject
     {
         public int PageNumber
         {

@@ -2,7 +2,7 @@
 
 namespace Twitty.Kernel
 {
-    public class StatusCollection:TwitterCollection<Status>, ITwitterObject
+    public class StatusCollection:TwitterCollection<Tweet>, ITwitterObject
     {
     }
 }
