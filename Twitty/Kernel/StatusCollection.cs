@@ -1,4 +1,5 @@
 ﻿using Twitty.Account;
+using Twitty.Tweets;
 
 namespace Twitty.Kernel
 {

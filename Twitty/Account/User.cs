@@ -1,4 +1,6 @@
 ﻿
+using Twitty.Tweets;
+
 namespace Twitty.Account
 {
     public class User

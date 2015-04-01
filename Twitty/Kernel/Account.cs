@@ -1,6 +1,7 @@
 using Twitty.Account;
 using Twitty.OAuth;
 using Twitty.Options;
+using Twitty.Tweets;
 
 namespace Twitty.Kernel
 {

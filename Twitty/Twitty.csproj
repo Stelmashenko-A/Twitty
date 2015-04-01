@@ -63,7 +63,8 @@
     <Compile Include="Kernel\ITwitterObject.cs" />
     <Compile Include="Kernel\StatusCollection.cs" />
     <Compile Include="Kernel\TwitterCollection.cs" />
-    <Compile Include="Account\Tweet.cs" />
+    <Compile Include="Tweets\Contributor.cs" />
+    <Compile Include="Tweets\Tweet.cs" />
     <Compile Include="Account\User.cs" />
     <Compile Include="Kernel\Account.cs" />
     <Compile Include="Kernel\IDataReader.cs" />
