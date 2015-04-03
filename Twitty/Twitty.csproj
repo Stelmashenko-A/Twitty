@@ -58,6 +58,8 @@
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\PagedTimelineCommand.cs" />
     <Compile Include="Commands\UserTimelineCommand.cs" />
+    <Compile Include="Entities\Hashtags.cs" />
+    <Compile Include="Entities\Media.cs" />
     <Compile Include="Geo\Coordinate.cs" />
     <Compile Include="Geo\TwitterGeo.cs" />
     <Compile Include="Kernel\ITwitterObject.cs" />
