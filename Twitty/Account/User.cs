@@ -1,5 +1,6 @@
 ﻿
 using System;
+using Twitty.Entities;
 using Twitty.Tweets;
 
 namespace Twitty.Account
@@ -12,7 +13,7 @@ namespace Twitty.Account
         public Boolean DefaultProfile { get; set; }
         public Boolean DefaultProfileImage { get; set; }
         public String Description { get; set; }
-        //public Entity Entities{get;set;}
+        public Entity Entities{get;set;}
         public int FavouritesCount { get; set; }
         //public Type (bool???) FollowRequesSent{get;set;}
         //public Type (bool???) Following{get;set;}
