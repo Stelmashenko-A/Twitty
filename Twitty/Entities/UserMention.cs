@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Twitty.Entities
 {
-    class UserMention
+    public class UserMention
     {
         public Int64 Id { get; set; }
         public String IdStr { get; set; }

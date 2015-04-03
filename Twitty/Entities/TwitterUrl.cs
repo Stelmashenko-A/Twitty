@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Twitty.Entities
 {
-    class TwitterUrl
+    public class TwitterUrl
     {
         public String DisplayUrl { get; set; }
         public String ExpandedUrl { get; set; }

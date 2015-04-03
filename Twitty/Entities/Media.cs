@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Twitty.Entities
 {
-    class Media
+    public class Media
     {
         public String DisplayUrl { get; set; }
         public String ExpandedUrl { get; set; }
