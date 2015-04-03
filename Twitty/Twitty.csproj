@@ -63,6 +63,7 @@
     <Compile Include="Entities\Size.cs" />
     <Compile Include="Entities\Sizes.cs" />
     <Compile Include="Entities\TwitterUrl.cs" />
+    <Compile Include="Entities\UserMention.cs" />
     <Compile Include="Geo\Coordinate.cs" />
     <Compile Include="Geo\TwitterGeo.cs" />
     <Compile Include="Kernel\ITwitterObject.cs" />
