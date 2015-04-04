@@ -41,13 +41,22 @@ namespace Twitty.Commands
                 var resp = requestBuilder.ExecutedRequest;
                 _responseData = ConversionUtility.ReadStream(resp.GetResponseStream());
                 twitterResponse.Content = Encoding.UTF8.GetString(_responseData, 0, _responseData.Length);
+                
             }
             catch (Exception e)
             {
                 
                 throw;
             }
-            
+            try
+            {
+                twitterResponse.ResponseObject = Serialization.Serializer<T>.Deseialize(_responseData);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
             return twitterResponse;
         }
 

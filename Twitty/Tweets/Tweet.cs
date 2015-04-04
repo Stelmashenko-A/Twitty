@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
 using Twitty.Account;
 using Twitty.Commands;
 using Twitty.Geo;
@@ -12,127 +14,82 @@ namespace Twitty.Tweets
     public class Tweet : ITwitterObject
     {
         //public object Annotation;
-        public List<Contributor> Contributors
-        {
-            get; set;
-        }
+        public List<Contributor> Contributors { get; set; }
 
-        public Coordinate Coordinates
-        {
-            get; set; 
-        }
+        public Coordinate Coordinates { get; set; }
+
+        [DataMember, JsonProperty(PropertyName = "created_at")]
         public String CreatedAt;
         //public object CurrentUserRetweet{get;set;}
         //public Entities entities {get;set;}
-        public int FavouriteCount
-        {
-            get; set;
-        }
+        [DataMember, JsonProperty(PropertyName = "favorite_count")]
+        public int FavouriteCount { get; set; }
 
-        public bool Favorited
-        {
-            get; set; 
-        }
+        [DataMember, JsonProperty(PropertyName = "favorited")]
+        public bool Favorited { get; set; }
 
-        public string FilterLevel
-        {
-            get; set;
-        }
+        [DataMember, JsonProperty(PropertyName = "filter_level")]
+        public string FilterLevel { get; set; }
 
-        public Int64 Id
-        {
-            get; set;            
-        }
+        [DataMember, JsonProperty(PropertyName = "id")]
+        public Int64 Id { get; set; }
 
-        public String IdStr
-        {
-            get; set; 
-        }
+        [DataMember, JsonProperty(PropertyName = "id_str")]
+        public String IdStr { get; set; }
 
-        public String InReplyToScreenName
-        {
-            get; set;           
-        }
+        [DataMember, JsonProperty(PropertyName = "in_reply_to_screen_name")]
+        public String InReplyToScreenName { get; set; }
 
-        public Int64 InReplyToStatusId
-        {
-            get; set;            
-        }
+        [DataMember, JsonProperty(PropertyName = "in_reply_to_status_id")]
+        public Int64? InReplyToStatusId { get; set; }
 
-        public String InReplyToStatusIdStr
-        {
-            get; set;            
-        }
+        [DataMember, JsonProperty(PropertyName = "in_reply_to_status_id_str")]
+        public String InReplyToStatusIdStr { get; set; }
 
-        public Int64 InReplyToUserId
-        {
-            get; set;            
-        }
+        [DataMember, JsonProperty(PropertyName = "in_reply_to_user_id")]
+        public Int64? InReplyToUserId { get; set; }
 
-        public String InReplyToUserIdStr
-        {
-            get; set;             
-        }
+        [DataMember, JsonProperty(PropertyName = "in_reply_to_user_id_str")]
+        public String InReplyToUserIdStr { get; set; }
 
-        public String Lang
-        {
-            get; set;         
-        }
+        [DataMember, JsonProperty(PropertyName = "lang")]
+        public String Lang { get; set; }
+
         //public Places plase{get;set;}
-        public Boolean PossiblySensitive
-        {
-            get; set;           
-        }
+        [DataMember, JsonProperty(PropertyName = "possibly_sensitive")]
+        public Boolean PossiblySensitive { get; set; }
+
         //public Object scopes{get;set;}
-        public int RetweetCount
-        {
-            get; set;            
-        }
+        [DataMember, JsonProperty(PropertyName = "retweet_count")]
+        public int RetweetCount { get; set; }
 
-        public Boolean Retweeted
-        {
-            get; set;            
-        }
+        [DataMember, JsonProperty(PropertyName = "retweeted")]
+        public Boolean Retweeted { get; set; }
 
-        public Tweet RetweetedStatus
-        {
-            get; set;            
-        }
+        [DataMember, JsonProperty(PropertyName = "retweeted_status")]
+        public Tweet RetweetedStatus { get; set; }
 
-        public String Sourse
-        {
-            get; set;            
-        }
+        [DataMember, JsonProperty(PropertyName = "source")]
+        public String Sourse { get; set; }
 
-        public String Text
-        {
-            get; set;            
-        }
+        [DataMember, JsonProperty(PropertyName = "text")]
+        public String Text { get; set; }
 
-        public Boolean Truncated
-        {
-            get; set;           
-        }
+        [DataMember, JsonProperty(PropertyName = "truncated")]
+        public Boolean Truncated { get; set; }
 
-        public User User
-        {
-            get; set;            
-        }
+        //[DataMember, JsonProperty(PropertyName = "created_at")]
+        public User User { get; set; }
 
-        public Boolean WithheldCopyright
-        {
-            get; set;          
-        }
+        [DataMember, JsonProperty(PropertyName = "withheld_copyright")]
+        public Boolean WithheldCopyright { get; set; }
 
-        public List<String> WithheldInCountries
-        {
-            get; set;            
-        }
+        [DataMember, JsonProperty(PropertyName = "withheld_in_countries")]
+        public List<String> WithheldInCountries { get; set; }
 
-        public String WithheldScope
-        {
-            get; set;          
-        }
+        [DataMember, JsonProperty(PropertyName = "withheld_scope")]
+        public String WithheldScope { get; set; }
+
         public static Response<Tweet> Update(OAuthTokens tokens, string text)
         {
             var command = new CommandForStatusUpdating(tokens, text);
