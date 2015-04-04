@@ -15,13 +15,13 @@ namespace Twitty.Kernel
             tokens.AccessToken = "";
             tokens.AccessTokenSecret = ""; 
 
-            Tweet.Update(tokens, "AZAZAZa");
+            //Tweet.Update(tokens, "AZAZAZa");
             var options = new UserTimelineOptions()
             {
                 ScreenName = "__BuS_TeR__",
                 UserId = 2765688547,
                 IncludeRetweets = false,
-                Count = 10,
+                Count = 100,
             };
             var srt = TimeLine.UserTimeline(tokens, options);       
         }

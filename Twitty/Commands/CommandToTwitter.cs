@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text;
 using Twitty.Account;
 using Twitty.Kernel;
 using Twitty.OAuth;
+using Twitty.Utility;
 
 namespace Twitty.Commands
 {
@@ -36,7 +38,9 @@ namespace Twitty.Commands
                 }
                 //Never delete next string: "HttpWebResponse resp = requestBuilder.ExecutedRequest;"
                 //ignor ReSharper here
-                HttpWebResponse resp = requestBuilder.ExecutedRequest;
+                var resp = requestBuilder.ExecutedRequest;
+                _responseData = ConversionUtility.ReadStream(resp.GetResponseStream());
+                twitterResponse.Content = Encoding.UTF8.GetString(_responseData, 0, _responseData.Length);
             }
             catch (Exception e)
             {

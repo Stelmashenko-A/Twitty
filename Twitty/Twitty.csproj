@@ -92,6 +92,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tweets\StatusCollection.cs" />
+    <Compile Include="Utility\ConversionUtility.cs" />
     <Compile Include="Utility\InputBox.cs" />
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
