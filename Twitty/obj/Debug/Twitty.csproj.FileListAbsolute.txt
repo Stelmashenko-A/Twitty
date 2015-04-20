@@ -9,13 +9,11 @@ C:\Users\Андрей\Documents\GitHubLabs\Twitty\Twitty\obj\Debug\Twitty.csproj
 C:\Users\Андрей\Documents\GitHubLabs\Twitty\Twitty\obj\Debug\Twitty.exe
 C:\Users\Андрей\Documents\GitHubLabs\Twitty\Twitty\obj\Debug\Twitty.pdb
 C:\Users\Андрей\Documents\GitHubLabs\Twitty\Twitty\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Андрей\Source\Repos\Twitty\Twitty\bin\Debug\Twitty.exe.config
-C:\Users\Андрей\Source\Repos\Twitty\Twitty\obj\Debug\Twitty.exe
 C:\Users\Андрей\Source\Repos\Twitty\Twitty\obj\Debug\Twitty.pdb
-C:\Users\Андрей\Source\Repos\Twitty\Twitty\bin\Debug\Twitty.exe
 C:\Users\Андрей\Source\Repos\Twitty\Twitty\bin\Debug\Twitty.pdb
 C:\Users\Андрей\Source\Repos\Twitty\Twitty\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Андрей\Source\Repos\Twitty\Twitty\obj\Debug\Twitty.csprojResolveAssemblyReference.cache
-C:\Users\Андрей\Source\Repos\Twitty\Twitty\obj\Debug\Twitty.MainWindow.resources
 C:\Users\Андрей\Source\Repos\Twitty\Twitty\obj\Debug\Twitty.Properties.Resources.resources
 C:\Users\Андрей\Source\Repos\Twitty\Twitty\obj\Debug\Twitty.csproj.GenerateResource.Cache
+C:\Users\Андрей\Source\Repos\Twitty\Twitty\bin\Debug\Twitty.dll
+C:\Users\Андрей\Source\Repos\Twitty\Twitty\obj\Debug\Twitty.dll

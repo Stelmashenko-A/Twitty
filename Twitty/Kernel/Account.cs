@@ -15,7 +15,7 @@ namespace Twitty.Kernel
             tokens.AccessToken = "";
             tokens.AccessTokenSecret = ""; 
 
-            //Tweet.Update(tokens, "AZAZAZa");
+            Tweet.Update(tokens, "AZAZAZasôdfa");
             var options = new UserTimelineOptions()
             {
                 ScreenName = "__BuS_TeR__",
@@ -23,7 +23,7 @@ namespace Twitty.Kernel
                 IncludeRetweets = false,
                 Count = 100,
             };
-            var srt = TimeLine.UserTimeline(tokens, options);       
+            Response<StatusCollection> srt = TimeLine.UserTimeline(tokens, options);       
         }
     }
 

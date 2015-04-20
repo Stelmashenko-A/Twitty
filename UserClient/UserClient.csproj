@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A7794DBD-071F-4609-B800-2FC145F53DCE}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{AB45E039-600E-460A-A14F-659FB667A248}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Twitty</RootNamespace>
-    <AssemblyName>Twitty</AssemblyName>
+    <RootNamespace>UserClient</RootNamespace>
+    <AssemblyName>UserClient</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,19 +31,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Messaging" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,48 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\TimeLine.cs" />
-    <Compile Include="Account\TwitterAccount.cs" />
-    <Compile Include="Account\Response.cs" />
-    <Compile Include="Account\UserCollection.cs" />
-    <Compile Include="Commands\CommandForStatusUpdating.cs" />
-    <Compile Include="Commands\CommandPerfomer.cs" />
-    <Compile Include="Commands\CommandToTwitter.cs" />
-    <Compile Include="Commands\ICommand.cs" />
-    <Compile Include="Commands\PagedTimelineCommand.cs" />
-    <Compile Include="Commands\UserTimelineCommand.cs" />
-    <Compile Include="Entities\Entity.cs" />
-    <Compile Include="Entities\Hashtags.cs" />
-    <Compile Include="Entities\Media.cs" />
-    <Compile Include="Entities\Size.cs" />
-    <Compile Include="Entities\Sizes.cs" />
-    <Compile Include="Entities\TwitterUrl.cs" />
-    <Compile Include="Entities\UserMention.cs" />
-    <Compile Include="Geo\Coordinate.cs" />
-    <Compile Include="Geo\TwitterGeo.cs" />
-    <Compile Include="Kernel\ITwitterObject.cs" />
-    <Compile Include="Kernel\StatusCollection.cs" />
-    <Compile Include="Kernel\TwitterCollection.cs" />
-    <Compile Include="Serialization\Serializer.cs" />
-    <Compile Include="Streaming\TwetterStream.cs" />
-    <Compile Include="Tweets\Contributor.cs" />
-    <Compile Include="Tweets\Tweet.cs" />
-    <Compile Include="Account\User.cs" />
-    <Compile Include="Kernel\Account.cs" />
-    <Compile Include="Kernel\IDataReader.cs" />
-    <Compile Include="OAuth\HTTPVerb.cs" />
-    <Compile Include="OAuth\GettingOAuthTokens.cs" />
-    <Compile Include="OAuth\OAuth.cs" />
-    <Compile Include="OAuth\OAuthTokens.cs" />
-    <Compile Include="OAuth\WebRequestBuilder.cs" />
-    <Compile Include="Options\TwitterOptions.cs" />
-    <Compile Include="Options\TimeLineOptions.cs" />
-    <Compile Include="Options\UserTimelineOptions.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tweets\StatusCollection.cs" />
-    <Compile Include="Utility\ConversionUtility.cs" />
-    <Compile Include="Utility\InputBox.cs" />
-    <Compile Include="Utility\Joiner.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -115,7 +77,18 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Twitty\Twitty.csproj">
+      <Project>{a7794dbd-071f-4609-b800-2fc145f53dce}</Project>
+      <Name>Twitty</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

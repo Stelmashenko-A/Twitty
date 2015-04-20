@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace Twitty.OAuth
 {
-    internal class WebRequestBuilder
+    public class WebRequestBuilder
     {
         public const string Api = "Twitter API";
         public bool AddRealm = true;
@@ -33,7 +33,7 @@ namespace Twitty.OAuth
             "oauth_version"
         };
 
-
+        public string AuthorizationHeader { get; set; }
         public Uri RequestUri { get; set; }
 
         public Dictionary<string, object> Parameters { get; private set; }
@@ -84,7 +84,7 @@ namespace Twitty.OAuth
             }
         }
 
-        private string GenerateAuthorizationHeader()
+        public string GenerateAuthorizationHeader()
         {
            
             var authHeaderBuilder = new StringBuilder();
@@ -110,8 +110,8 @@ namespace Twitty.OAuth
                 authHeaderBuilder.AppendFormat(",oauth_signature=\"{0}\"",
                     UrlEncode((string) Parameters["oauth_signature"]));
 
-
-            return authHeaderBuilder.ToString();
+                AuthorizationHeader = authHeaderBuilder.ToString();
+            return AuthorizationHeader;
         }
         
         public WebRequestBuilder(Uri requestUri, HTTPVerb verb)
