@@ -13,32 +13,49 @@ namespace Twitty.Streaming
 {
     public class TwitterStream
     {
-
-        public void Stream2Queue(OAuthTokens tokens, List<string> trackKeywords, List<string> followUserId,
-            List<string> locationCoord)
+        private IMessageProcessor _messageProcessor;
+        private OAuthTokens _tokens;
+        private string _streamUrl;
+        private List<string> _trackKeywords;
+        private List<string> _followUserId;
+        private List<string> _locationCoord;
+        public TwitterStream(IMessageProcessor messageProcessor, OAuthTokens tokens, string streamUrl, List<string> trackKeywords, List<string> followUserId, List<string> locationCoord)
         {
+            _messageProcessor = messageProcessor;
+            _tokens = tokens;
+            _streamUrl = streamUrl;
+            _trackKeywords = trackKeywords;
+            _followUserId = followUserId;
+            _locationCoord = locationCoord;
+        }
+
+        public void Start()
+        {
+            if (!_tokens.IsIdentified())
+            {
+                throw new ArgumentNullException(_tokens.ToString());
+            }
             //Twitter Streaming API
-            string streamUrl = "https://stream.twitter.com/1.1/statuses/filter.json";
             HttpWebRequest webRequest = null;
             HttpWebResponse webResponse = null;
             StreamReader responseStream = null;
-            MessageQueue q = null;
+            //MessageQueue messageQueue = null;
 
             StringBuilder post = new StringBuilder("");
-            if (trackKeywords.Count != 0)
+            if (_trackKeywords.Count != 0)
             {
                 post.Append("&track=");
-                post.Append(Joiner.Join(trackKeywords, ","));
+                post.Append(Joiner.Join(_trackKeywords, ","));
             }
-            if (followUserId.Count != 0)
+            if (_followUserId.Count != 0)
             {
                 post.Append("&follow=");
-                post.Append(Joiner.Join(followUserId, ","));
+                post.Append(Joiner.Join(_followUserId, ","));
             }
-            if (locationCoord.Count != 0)
+            if (_locationCoord.Count != 0)
             {
                 post.Append("&locations=");
-                post.Append(Joiner.Join(locationCoord, ","));
+                post.Append(Joiner.Join(_locationCoord, ","));
             }
             string postparameters = post.ToString();
 
@@ -56,19 +73,20 @@ namespace Twitty.Streaming
 
             try
             {
-                if (MessageQueue.Exists(@".\private$\Twitter"))
-                    q = new MessageQueue(@".\private$\Twitter");
-                else
-                    q = MessageQueue.Create(@".\private$\Twitter");
+               // if (MessageQueue.Exists(@".\private$\Twitter"))
+                   // messageQueue = new MessageQueue(@".\private$\Twitter");
+               // else
+                 //   messageQueue = MessageQueue.Create(@".\private$\Twitter");
 
                 while (true)
                 {
                     try
                     {
                         //Connect
-                        webRequest = (HttpWebRequest) WebRequest.Create(streamUrl);
+
+                        webRequest = (HttpWebRequest) WebRequest.Create(_streamUrl);
                         webRequest.Timeout = -1;
-                        webRequest.Headers.Add("Authorization", GetAuthHeader(tokens, streamUrl + "?" + postparameters));
+                        webRequest.Headers.Add("Authorization", GetAuthHeader(_tokens, _streamUrl + "?" + postparameters));
 
                         var encode = Encoding.GetEncoding("utf-8");
                         if (postparameters.Length > 0)
@@ -91,10 +109,10 @@ namespace Twitty.Streaming
                         while (true)
                         {
                             jsonText = responseStream.ReadLine();
-                            Message message = new Message(jsonText);
-                            q.Send(message);
+                            //Message message = new Message(jsonText);
+                            //messageQueue.Send(message);
 
-                            //Console.Write(jsonText);
+                            _messageProcessor.Proccess(jsonText);
                         }
                     }
                     catch (WebException ex)
@@ -127,7 +145,7 @@ namespace Twitty.Streaming
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine(ex.Message);
+                        //Console.WriteLine(ex.Message);
                     }
                     finally
                     {
@@ -169,7 +187,7 @@ namespace Twitty.Streaming
         private string GetAuthHeader(OAuthTokens tokens, string url)
         {
 
-            WebRequestBuilder wb = new WebRequestBuilder(new Uri(url), HTTPVerb.POST, tokens);
+            var wb = new WebRequestBuilder(new Uri(url), HTTPVerb.POST, tokens);
 
             var resp = wb.ExecutedRequest;
 

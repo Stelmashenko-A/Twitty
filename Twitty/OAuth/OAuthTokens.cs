@@ -21,5 +21,11 @@
         {
             get; set;
         }
+
+        public bool IsIdentified()
+        {
+            return !string.IsNullOrEmpty(AccessToken) && !string.IsNullOrEmpty(AccessTokenSecret) &&
+                   !string.IsNullOrEmpty(ConsumerKey) && !string.IsNullOrEmpty(ConsumerSecret);
+        }
     }
 }
