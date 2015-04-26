@@ -5,6 +5,7 @@ using Twitty.Tweets;
 
 namespace Twitty.Account
 {
+    [SerializableAttribute]
     //https://dev.twitter.com/overview/api/users
     public class User
     {

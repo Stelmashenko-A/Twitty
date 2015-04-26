@@ -13,12 +13,13 @@ namespace Twitty.Streaming
 {
     public class TwitterStream
     {
-        private IMessageProcessor _messageProcessor;
-        private OAuthTokens _tokens;
-        private string _streamUrl;
-        private List<string> _trackKeywords;
-        private List<string> _followUserId;
-        private List<string> _locationCoord;
+        private readonly IMessageProcessor _messageProcessor;
+        private readonly OAuthTokens _tokens;
+        private readonly string _streamUrl;
+        private readonly List<string> _trackKeywords;
+        private readonly List<string> _followUserId;
+        private readonly List<string> _locationCoord;
+
         public TwitterStream(IMessageProcessor messageProcessor, OAuthTokens tokens, string streamUrl, List<string> trackKeywords, List<string> followUserId, List<string> locationCoord)
         {
             _messageProcessor = messageProcessor;
@@ -39,7 +40,7 @@ namespace Twitty.Streaming
             HttpWebRequest webRequest = null;
             HttpWebResponse webResponse = null;
             StreamReader responseStream = null;
-            //MessageQueue messageQueue = null;
+            MessageQueue messageQueue = null;
 
             StringBuilder post = new StringBuilder("");
             if (_trackKeywords.Count != 0)
@@ -69,14 +70,14 @@ namespace Twitty.Streaming
             var pause = 0;
             var jsonText = "";
 
-
-
+            int counter = 0;
+            Console.Beep();
             try
             {
-               // if (MessageQueue.Exists(@".\private$\Twitter"))
-                   // messageQueue = new MessageQueue(@".\private$\Twitter");
-               // else
-                 //   messageQueue = MessageQueue.Create(@".\private$\Twitter");
+                if (MessageQueue.Exists(@".\private$\Twitter"))
+                    messageQueue = new MessageQueue(@".\private$\Twitter");
+                else
+                    messageQueue = MessageQueue.Create(@".\private$\Twitter");
 
                 while (true)
                 {
@@ -85,7 +86,7 @@ namespace Twitty.Streaming
                         //Connect
 
                         webRequest = (HttpWebRequest) WebRequest.Create(_streamUrl);
-                        webRequest.Timeout = -1;
+                        webRequest.Timeout = 100000;
                         webRequest.Headers.Add("Authorization", GetAuthHeader(_tokens, _streamUrl + "?" + postparameters));
 
                         var encode = Encoding.GetEncoding("utf-8");
@@ -102,22 +103,28 @@ namespace Twitty.Streaming
                             twitterPost.Close();
                         }
 
-                        webResponse = (HttpWebResponse) webRequest.GetResponse();
-
-                        // ReSharper disable once AssignNullToNotNullAttribute
-                        responseStream = new StreamReader(webResponse.GetResponseStream(), encode);
-                        while (true)
+                        using (webResponse = (HttpWebResponse) webRequest.GetResponse())
                         {
-                            jsonText = responseStream.ReadLine();
-                            //Message message = new Message(jsonText);
-                            //messageQueue.Send(message);
 
-                            _messageProcessor.Proccess(jsonText);
+                            // ReSharper disable once AssignNullToNotNullAttribute
+                            responseStream = new StreamReader(webResponse.GetResponseStream(), encode);
+                            while (true)
+                            {
+                                counter++;
+
+                                jsonText = responseStream.ReadLine();
+                                //Tweets.Tweet tw = new Tweets.Tweet();
+                                //Message message = new Message(tw);
+                                //messageQueue.Send(tw);
+                                //Console.WriteLine(jsonText);
+                                _messageProcessor.Proccess(jsonText);
+                            }
                         }
                     }
                     catch (WebException ex)
                     {
-                        //Console.WriteLine(ex.Message);
+                        Console.WriteLine("norm");
+                        Console.WriteLine(ex.Message);
                         if (ex.Status == WebExceptionStatus.ProtocolError)
                         {
                             //Twitter Docs
@@ -145,12 +152,25 @@ namespace Twitty.Streaming
                     }
                     catch (Exception ex)
                     {
-                        //Console.WriteLine(ex.Message);
+                        Console.Beep();
+                        
+                        webResponse.Dispose();
+                        responseStream.Dispose();
+                        GC.Collect();
+                        GC.Collect(GC.GetGeneration(responseStream),GCCollectionMode.Forced,true);
+                        GC.Collect(GC.GetGeneration(webResponse), GCCollectionMode.Forced, true);
+                        pause = 1000;
+                        Thread.Sleep(pause);
+                        Console.WriteLine(ex.Message);
+
                     }
                     finally
                     {
                         if (webRequest != null)
+                        {
                             webRequest.Abort();
+                            webRequest = null;
+                        }
                         if (responseStream != null)
                         {
                             responseStream.Close();
@@ -162,13 +182,21 @@ namespace Twitty.Streaming
                             webResponse.Close();
                             webResponse = null;
                         }
-                        //Console.WriteLine("Waiting: " + wait);
+                        Console.WriteLine("Waiting: " + pause);
+                        //GC.Collect();
+                        //GC.Collect(GC.GetGeneration(responseStream), GCCollectionMode.Forced, true);
+                       // GC.Collect(GC.GetGeneration(webResponse), GCCollectionMode.Forced, true);
+
+                        //GC.Collect(GC.GetGeneration(webRequest), GCCollectionMode.Forced, true);
                         Thread.Sleep(pause);
+                        
                     }
                 }
             }
             catch (Exception ex)
             {
+                Console.WriteLine("norm2");
+                Console.Beep();
                 //Console.WriteLine(ex.Message);
                 //Console.WriteLine("Waiting: " + pause);
                 Thread.Sleep(pause);

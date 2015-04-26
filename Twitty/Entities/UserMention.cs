@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Twitty.Entities
 {
+    [SerializableAttribute]
     public class UserMention
     {
         public Int64 Id { get; set; }

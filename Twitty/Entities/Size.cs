@@ -2,6 +2,7 @@
 
 namespace Twitty.Entities
 {
+    [SerializableAttribute]
     class Size
     {
         public int Height { get; set; }

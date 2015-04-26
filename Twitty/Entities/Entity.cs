@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Twitty.Entities
 {
+    [Serializable]
     public class Entity
     {
         public List<Hashtags> Hashtags { get; set; }

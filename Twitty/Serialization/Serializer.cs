@@ -5,7 +5,7 @@ using Twitty.Kernel;
 
 namespace Twitty.Serialization
 {
-    static class Serializer<T> where T:ITwitterObject
+    static public class Serializer<T> where T:ITwitterObject
     {
         public delegate T DeserializationHandler(JObject value);
         public static T Deseialize(byte[] data)

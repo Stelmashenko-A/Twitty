@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Twitty.Entities
 {
+    [SerializableAttribute]
     public class Media
     {
         public String DisplayUrl { get; set; }

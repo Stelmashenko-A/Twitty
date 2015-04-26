@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Twitty.Entities
 {
+    [SerializableAttribute]
     public class TwitterUrl
     {
         public String DisplayUrl { get; set; }

@@ -1,5 +1,8 @@
-﻿namespace Twitty.Entities
+﻿using System;
+
+namespace Twitty.Entities
 {
+    [Serializable]
     class Sizes
     {
         public Size Thumb { get; set; }

@@ -11,6 +11,7 @@ using Twitty.OAuth;
 namespace Twitty.Tweets
 {
     //https://dev.twitter.com/overview/api/tweets
+    [SerializableAttribute]
     public class Tweet : ITwitterObject
     {
         //public object Annotation;

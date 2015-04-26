@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Twitty.Account.Response&lt;T&gt;" Collapsed="true">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAABAAAAAAAAAAAAAgAAAAAABAAA=</HashCode>
+      <FileName>Account\Response.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Account.TimeLine" Collapsed="true">
+    <Position X="11.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Account\TimeLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Account.TwitterAccount" Collapsed="true">
+    <Position X="15.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Account\TwitterAccount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Account.User" Collapsed="true">
+    <Position X="11.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAKQAAEAAIgQAARAC8IACQQIBAAYgEADAGgBDBCUCA=</HashCode>
+      <FileName>Account\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Account.UserCollection" Collapsed="true">
+    <Position X="3" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Account\UserCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Commands.CommandForStatusUpdating" Collapsed="true">
+    <Position X="5.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Commands\CommandForStatusUpdating.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Commands.CommandPerfomer" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\CommandPerfomer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Commands.CommandToTwitter&lt;T&gt;" Collapsed="true">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAACQAAAAAAEAAAAAAAAAAACIAAAABBAAA=</HashCode>
+      <FileName>Commands\CommandToTwitter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Twitty.Commands.PagedTimelineCommand">
+    <Position X="3.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\PagedTimelineCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Commands.UserTimelineCommand" Collapsed="true">
+    <Position X="3.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\UserTimelineCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Entities.Entity" Collapsed="true">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Entities\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Entities.Hashtags" Collapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Entities\Hashtags.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Entities.Media" Collapsed="true">
+    <Position X="15.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAASAAAAAEAAAAgBAAAAAAAAAAAIAAAACQAAAEACAAA=</HashCode>
+      <FileName>Entities\Media.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Entities.Size" Collapsed="true">
+    <Position X="8.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Entities\Size.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Entities.Sizes" Collapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAABgAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Entities\Sizes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Entities.TwitterUrl" Collapsed="true">
+    <Position X="10" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAgAAAAAAAAABAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\TwitterUrl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Entities.UserMention" Collapsed="true">
+    <Position X="13.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACQAAAAEAAAAAAAAAAAAQAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Entities\UserMention.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Geo.Coordinate" Collapsed="true">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Geo\Coordinate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Geo.TwitterGeo" Collapsed="true">
+    <Position X="17" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Geo\TwitterGeo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Kernel.Account" Collapsed="true">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\Account.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Kernel.StatusCollection" Collapsed="true">
+    <Position X="0.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\StatusCollection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Twitty.Kernel.TwitterCollection&lt;T&gt;" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Kernel\TwitterCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.OAuth.GettingOAuthTokens" Collapsed="true">
+    <Position X="8.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQIAAAAAAAAAAAAAAAAgAAAAAIAAAAAAAEAABAAA=</HashCode>
+      <FileName>OAuth\GettingOAuthTokens.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.OAuth.OAuth" Collapsed="true">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAEAAAAAAAAAIAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>OAuth\OAuth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.OAuth.OAuthTokens" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAEAACAAQAAAABAAAAAAA=</HashCode>
+      <FileName>OAuth\OAuthTokens.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.OAuth.WebRequestBuilder" Collapsed="true">
+    <Position X="15.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIBAAQAKAAACAAEEAJCKAABAAAAAEBAAAIAAgEAhAAI=</HashCode>
+      <FileName>OAuth\WebRequestBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Options.TimeLineOptions" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAASAQEAAAIAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Options\TimeLineOptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Options.TwitterOptions" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAACAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Options\TwitterOptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Options.UserTimelineOptions" Collapsed="true">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Options\UserTimelineOptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Properties.Resources" Collapsed="true">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Properties.Settings" Collapsed="true">
+    <Position X="17" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Serialization.Serializer&lt;T&gt;" Collapsed="true">
+    <Position X="15.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Serialization\Serializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Streaming.MessageProcessor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Streaming\MessageProcessor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Twitty.Streaming.TwitterStream" Collapsed="true">
+    <Position X="8.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAgAAgAAAAAAQAAAEACAAABAABAAY=</HashCode>
+      <FileName>Streaming\TwetterStream.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Tweets.Contributor" Collapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Tweets\Contributor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Tweets.StatusCollection" Collapsed="true">
+    <Position X="5.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tweets\StatusCollection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Twitty.Tweets.Tweet" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQDRBACAAAAAAAAACCQgAEAoEAAAAAABQCASCALAAA=</HashCode>
+      <FileName>Tweets\Tweet.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Twitty.Utility.ConversionUtility" Collapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Utility\ConversionUtility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Twitty.Utility.InputBox" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utility\InputBox.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Twitty.Utility.Joiner" Collapsed="true">
+    <Position X="13.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utility\Joiner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Twitty.Commands.ICommand&lt;T&gt;" Collapsed="true">
+    <Position X="8.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Commands\ICommand.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Twitty.Kernel.IDataReader" Collapsed="true">
+    <Position X="10" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IDataReader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Twitty.Kernel.ITwitterObject" Collapsed="true">
+    <Position X="13.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\ITwitterObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Twitty.Streaming.IMessageProcessor" Collapsed="true">
+    <Position X="11.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Streaming\IMessageProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Twitty.OAuth.HTTPVerb" Collapsed="true">
+    <Position X="8.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAEAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OAuth\HTTPVerb.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
