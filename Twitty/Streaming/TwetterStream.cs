@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Messaging;
 using System.Net;
@@ -74,11 +73,6 @@ namespace Twitty.Streaming
             Console.Beep();
             try
             {
-                if (MessageQueue.Exists(@".\private$\Twitter"))
-                    messageQueue = new MessageQueue(@".\private$\Twitter");
-                else
-                    messageQueue = MessageQueue.Create(@".\private$\Twitter");
-
                 while (true)
                 {
                     try
@@ -113,10 +107,6 @@ namespace Twitty.Streaming
                                 counter++;
 
                                 jsonText = responseStream.ReadLine();
-                                //Tweets.Tweet tw = new Tweets.Tweet();
-                                //Message message = new Message(tw);
-                                //messageQueue.Send(tw);
-                                //Console.WriteLine(jsonText);
                                 _messageProcessor.Proccess(jsonText);
                             }
                         }
@@ -152,6 +142,7 @@ namespace Twitty.Streaming
                     }
                     catch (Exception ex)
                     {
+                        
                         Console.Beep();
                         
                         webResponse.Dispose();

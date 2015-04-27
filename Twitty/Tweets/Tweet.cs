@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Twitty.Account;
@@ -11,11 +12,15 @@ using Twitty.OAuth;
 namespace Twitty.Tweets
 {
     //https://dev.twitter.com/overview/api/tweets
-    [SerializableAttribute]
-    public class Tweet : ITwitterObject
+   // [SerializableAttribute]
+    public class Tweet : ITwitterObject,IGeo
     {
         //public object Annotation;
-        public List<Contributor> Contributors { get; set; }
+        [JsonProperty(PropertyName = "contributors")]
+        public Collection<Contributor> Contributors { get; set; }
+
+      //  [JsonProperty(PropertyName = "coordinates")]
+        //[JsonConverter(typeof(Coordinate.Converter))]
 
         public Coordinate Coordinates { get; set; }
 

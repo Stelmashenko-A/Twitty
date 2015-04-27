@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using Twitty.Serialization;
 using Twitty.Tweets;
 
@@ -13,9 +14,16 @@ namespace Twitty.Streaming
         }
         public void Proccess(string message)
         {
-            var tweet = Serializer<Tweet>.Deserialize(message);
-            _sender.Send(tweet);
-            //Sender<Tweet>.SenderEventHandler(tweet);
+           
+                var tweet = Serializer<Tweet>.Deserialize(message);
+                Sender<Tweet>.SenderEventHandler(tweet);
+           
+            
+            //_sender.Send(tweet);
+
+            
         }
+        //public delegate void CallbackEvent(Tweet data);
+        //public CallbackEvent SenderEventHandler;
     }
 }

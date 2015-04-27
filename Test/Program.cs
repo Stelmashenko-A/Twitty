@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,10 +24,10 @@ namespace Test
             List<string> kw = new List<string>();
             //kw.Add("Nepal");
             List<string> koordList = new List<string>();
-          /*  koordList.Add("-180.0");
+            koordList.Add("-180.0");
             koordList.Add("-90.0");
             koordList.Add("0.0");
-            koordList.Add("90.0");*/
+            koordList.Add("90.0");
             koordList.Add("0.0");
             koordList.Add("-90.0");
             koordList.Add("180.0");
@@ -36,12 +37,13 @@ namespace Test
             TwitterStream stream = new TwitterStream(message, tokens, "https://stream.twitter.com/1.1/statuses/filter.json", kw, new List<string>(), koordList);
             //Sender<Tweet>.SenderEventHandler = GetData;
             IGetter<Tweet> getter = new TweetGetter(@".\private$\Twitter");
-            Visualizer visualizer = new Visualizer(getter);
+            
+            //Visualizer<Tweet> visualizer = new Visualizer<Tweet>(getter,th);
             Thread th = new Thread(stream.Start);
-            Thread th2 = new Thread(visualizer.Start);
+            //Thread th2 = new Thread(visualizer.Start);
             th.Start();
             
-            th2.Start();
+            //th2.Start();
             
 
 
