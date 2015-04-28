@@ -21,8 +21,8 @@ namespace Twitty.Tweets
 
       //  [JsonProperty(PropertyName = "coordinates")]
         //[JsonConverter(typeof(Coordinate.Converter))]
-
-        public Coordinate Coordinates { get; set; }
+        [DataMember, JsonProperty(PropertyName = "geo")]
+        public TwitterGeo Coordinates { get; set; }
 
         [DataMember, JsonProperty(PropertyName = "created_at")]
         public String CreatedAt;

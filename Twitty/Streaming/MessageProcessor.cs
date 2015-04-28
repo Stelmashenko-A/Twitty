@@ -1,16 +1,15 @@
-﻿using System;
-using Newtonsoft.Json;
-using Twitty.Serialization;
+﻿using Twitty.Serialization;
 using Twitty.Tweets;
 
 namespace Twitty.Streaming
 {
     public class MessageProcessor:IMessageProcessor
     {
-        private ISender<Tweet> _sender;
+        public ISender<Tweet> Sender1 { get; private set; }
+
         public MessageProcessor(ISender<Tweet> sender)
         {
-            _sender = sender;
+            Sender1 = sender;
         }
         public void Proccess(string message)
         {

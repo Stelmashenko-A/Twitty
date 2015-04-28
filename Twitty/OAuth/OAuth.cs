@@ -13,7 +13,7 @@ namespace Twitty.OAuth
             string callbackAddress)
         {
             var webRequestBuilder = new WebRequestBuilder(new Uri("https://api.twitter.com/oauth/request_token"),
-                HTTPVerb.POST, new OAuthTokens {ConsumerKey = consumerKey, ConsumerSecret = consumerSecret});
+                HttpVerb.Post, new OAuthTokens {ConsumerKey = consumerKey, ConsumerSecret = consumerSecret});
             var result = string.Empty;
             var httpWebResponse = webRequestBuilder.ExecutedRequest;
             var stream = httpWebResponse.GetResponseStream();
@@ -50,7 +50,7 @@ namespace Twitty.OAuth
             string verifier)
         {
             var webRequestBuilder = new WebRequestBuilder(new Uri("https://api.twitter.com/oauth/access_token"),
-                HTTPVerb.POST, new OAuthTokens {ConsumerKey = consumerKey, ConsumerSecret = consumerSecret});
+                HttpVerb.Post, new OAuthTokens {ConsumerKey = consumerKey, ConsumerSecret = consumerSecret});
             webRequestBuilder.Parameters.Add("oauth_verifier", verifier);
             webRequestBuilder.Parameters.Add("oauth_token", requestToken);
 

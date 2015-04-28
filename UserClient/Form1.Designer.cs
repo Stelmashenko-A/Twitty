@@ -34,7 +34,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::UserClient.Properties.Resources.map10;
+            this.pictureBox1.Image = global::UserClient.Properties.Resources._991bf007e9d5;
             this.pictureBox1.InitialImage = global::UserClient.Properties.Resources.map10;
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";

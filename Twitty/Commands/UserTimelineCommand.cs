@@ -6,7 +6,7 @@ namespace Twitty.Commands
     internal class UserTimelineCommand : PagedTimelineCommand
     {
         public UserTimelineCommand(OAuthTokens tokens, TwitterOptions options)
-            : base(HTTPVerb.GET, "https://api.twitter.com/1.1/statuses/user_timeline.json", tokens, options)
+            : base(HttpVerb.Get, "https://api.twitter.com/1.1/statuses/user_timeline.json", tokens, options)
         {
         }
 

@@ -63,6 +63,16 @@ namespace UserClient.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _991bf007e9d5 {
+            get {
+                object obj = ResourceManager.GetObject("991bf007e9d5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap map10 {
             get {
                 object obj = ResourceManager.GetObject("map10", resourceCulture);

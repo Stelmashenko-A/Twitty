@@ -6,16 +6,16 @@ namespace Twitty.Tweets
     public class Contributor
     {
         [JsonProperty(PropertyName = "id")]
-        public Int64 Id
+        public long Id
         {
             get; set;
         }
 
         [JsonProperty(PropertyName = "id_str")]
-        public String IdStr { get; set; }
+        public string IdStr { get; set; }
 
         [JsonProperty(PropertyName = "screen_name")]
-        public String ScreenName { get; set; }
+        public string ScreenName { get; set; }
 
     }
 }

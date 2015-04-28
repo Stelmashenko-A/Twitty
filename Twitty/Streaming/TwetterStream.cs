@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Messaging;
 using System.Net;
 using System.Text;
 using System.Threading;
@@ -29,6 +28,12 @@ namespace Twitty.Streaming
             _locationCoord = locationCoord;
         }
 
+        public int Counter
+        {
+            get { return _counter; }
+            set { _counter = value; }
+        }
+
         public void Start()
         {
             if (!_tokens.IsIdentified())
@@ -39,7 +44,6 @@ namespace Twitty.Streaming
             HttpWebRequest webRequest = null;
             HttpWebResponse webResponse = null;
             StreamReader responseStream = null;
-            MessageQueue messageQueue = null;
 
             StringBuilder post = new StringBuilder("");
             if (_trackKeywords.Count != 0)
@@ -67,9 +71,7 @@ namespace Twitty.Streaming
             }
 
             var pause = 0;
-            var jsonText = "";
 
-            int counter = 0;
             Console.Beep();
             try
             {
@@ -104,16 +106,16 @@ namespace Twitty.Streaming
                             responseStream = new StreamReader(webResponse.GetResponseStream(), encode);
                             while (true)
                             {
-                                counter++;
+                                _counter++;
 
-                                jsonText = responseStream.ReadLine();
+                                var jsonText = responseStream.ReadLine();
                                 _messageProcessor.Proccess(jsonText);
                             }
                         }
                     }
                     catch (WebException ex)
                     {
-                        Console.WriteLine("norm");
+                        Console.WriteLine(@"norm");
                         Console.WriteLine(ex.Message);
                         if (ex.Status == WebExceptionStatus.ProtocolError)
                         {
@@ -144,12 +146,18 @@ namespace Twitty.Streaming
                     {
                         
                         Console.Beep();
-                        
-                        webResponse.Dispose();
-                        responseStream.Dispose();
-                        GC.Collect();
-                        GC.Collect(GC.GetGeneration(responseStream),GCCollectionMode.Forced,true);
-                        GC.Collect(GC.GetGeneration(webResponse), GCCollectionMode.Forced, true);
+
+                        if (webResponse != null)
+                        {
+                            webResponse.Dispose();
+                            if (responseStream != null)
+                            {
+                                responseStream.Dispose();
+                                GC.Collect();
+                                GC.Collect(GC.GetGeneration(responseStream),GCCollectionMode.Forced,true);
+                            }
+                            GC.Collect(GC.GetGeneration(webResponse), GCCollectionMode.Forced, true);
+                        }
                         pause = 1000;
                         Thread.Sleep(pause);
                         Console.WriteLine(ex.Message);
@@ -173,20 +181,15 @@ namespace Twitty.Streaming
                             webResponse.Close();
                             webResponse = null;
                         }
-                        Console.WriteLine("Waiting: " + pause);
-                        //GC.Collect();
-                        //GC.Collect(GC.GetGeneration(responseStream), GCCollectionMode.Forced, true);
-                       // GC.Collect(GC.GetGeneration(webResponse), GCCollectionMode.Forced, true);
-
-                        //GC.Collect(GC.GetGeneration(webRequest), GCCollectionMode.Forced, true);
+                        Console.WriteLine(@"Waiting: " + pause);
                         Thread.Sleep(pause);
                         
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine("norm2");
+                Console.WriteLine(@"norm2");
                 Console.Beep();
                 //Console.WriteLine(ex.Message);
                 //Console.WriteLine("Waiting: " + pause);
@@ -196,7 +199,7 @@ namespace Twitty.Streaming
 
 
 
-        private int counter = 0;
+        private int _counter;
 
         public void MessageProcess(object objMessage)
         {
@@ -206,8 +209,8 @@ namespace Twitty.Streaming
         private string GetAuthHeader(OAuthTokens tokens, string url)
         {
 
-            var wb = new WebRequestBuilder(new Uri(url), HTTPVerb.POST, tokens);
-
+            var wb = new WebRequestBuilder(new Uri(url), HttpVerb.Post, tokens);
+            // ReSharper disable once UnusedVariable
             var resp = wb.ExecutedRequest;
 
             return wb.AuthorizationHeader;

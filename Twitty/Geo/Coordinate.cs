@@ -26,12 +26,10 @@ namespace Twitty.Geo
            {
                try
                {
-                   Collection<Coordinate> result = existingValue as Collection<Coordinate>;
+                   var result = existingValue as Collection<Coordinate> ??
+                                                   new Collection<Coordinate>();
 
-                   if (result == null)
-                       result = new Collection<Coordinate>();
-
-                   int startDepth = reader.Depth;
+                   var startDepth = reader.Depth;
 
                    if (reader.TokenType != JsonToken.StartArray)
                    {
@@ -46,7 +44,7 @@ namespace Twitty.Geo
                        if (((IList) new[] {JsonToken.StartArray, JsonToken.EndArray}).Contains(reader.TokenType))
                            continue;
 
-                       int itemIndex = Convert.ToInt32(Math.Ceiling(count / 2) - 1);
+                       var itemIndex = Convert.ToInt32(Math.Ceiling(count / 2) - 1);
 
                        if (count % 2 > 0)
                        {

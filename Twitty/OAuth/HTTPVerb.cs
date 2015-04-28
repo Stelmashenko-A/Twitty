@@ -1,9 +1,9 @@
 ﻿namespace Twitty.OAuth
 {
-    public enum HTTPVerb
+    public enum HttpVerb
     {
-        GET,
-        POST,
-        DELETE
+        Get,
+        Post,
+        Delete
     }
 }

@@ -4,6 +4,6 @@ namespace Twitty.Geo
 {
     public interface IGeo
     {
-        Coordinate Coordinates { get; set; }
+        TwitterGeo Coordinates { get; set; }
     }
 }

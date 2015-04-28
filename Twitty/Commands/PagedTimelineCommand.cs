@@ -8,7 +8,7 @@ namespace Twitty.Commands
 {
     internal abstract class PagedTimelineCommand : CommandToTwitter<StatusCollection>
     {
-        protected PagedTimelineCommand(HTTPVerb method, string endPoint, OAuthTokens tokens, TwitterOptions options)
+        protected PagedTimelineCommand(HttpVerb method, string endPoint, OAuthTokens tokens, TwitterOptions options)
             : base(method, endPoint, tokens, options)
         {
         }

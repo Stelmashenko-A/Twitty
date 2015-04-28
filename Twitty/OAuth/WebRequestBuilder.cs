@@ -40,7 +40,7 @@ namespace Twitty.OAuth
 
         public OAuthTokens Tokens { private get; set; }
 
-        public HTTPVerb Verb { get; set; }
+        public HttpVerb Verb { get; set; }
 
         private GettingOAuthTokens GettingOAuthTokens
         {
@@ -114,7 +114,7 @@ namespace Twitty.OAuth
             return AuthorizationHeader;
         }
         
-        public WebRequestBuilder(Uri requestUri, HTTPVerb verb)
+        public WebRequestBuilder(Uri requestUri, HttpVerb verb)
         {
             if (requestUri == null)
             {
@@ -138,14 +138,14 @@ namespace Twitty.OAuth
             RequestUri = new Uri(RequestUri.AbsoluteUri.Replace(RequestUri.Query, ""));
         }
 
-        public WebRequestBuilder(Uri requestUri, HTTPVerb verb, OAuthTokens tokens)
+        public WebRequestBuilder(Uri requestUri, HttpVerb verb, OAuthTokens tokens)
             : this(requestUri, verb)
         {
             UseOAuth = true;
             Tokens = tokens;
         }
 
-        public WebRequestBuilder(Uri requestUri, HTTPVerb verb, OAuthTokens oAuthTokensokens, GettingOAuthTokens gettingOAuthTokens)
+        public WebRequestBuilder(Uri requestUri, HttpVerb verb, OAuthTokens oAuthTokensokens, GettingOAuthTokens gettingOAuthTokens)
             : this(requestUri, verb, oAuthTokensokens)
         {
             GettingOAuthTokens = gettingOAuthTokens;
