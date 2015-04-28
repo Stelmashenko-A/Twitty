@@ -82,10 +82,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TwitterAnalyzer\TwitterAnalyzer.csproj">
-      <Project>{06141338-c9f4-4001-9e51-961ee644ae72}</Project>
-      <Name>TwitterAnalyzer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Twitty\Twitty.csproj">
       <Project>{a7794dbd-071f-4609-b800-2fc145f53dce}</Project>
       <Name>Twitty</Name>
