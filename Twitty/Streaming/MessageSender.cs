@@ -1,23 +1,19 @@
-﻿using System.Messaging;
-using Twitty.Tweets;
+﻿using System.Collections.Concurrent;
 
 namespace Twitty.Streaming
 {
-    public class MessageSender:ISender<Tweet>
+    public class MessageSender<T>:ISender<T>
     {
-        MessageQueue messageQueue;
+        readonly ConcurrentQueue<T> _messageQueue;
 
-        public MessageSender(string messageQueueName)
+        public MessageSender(ConcurrentQueue<T> messageQueue)
         {
-            messageQueue = MessageQueue.Exists(@messageQueueName)
-                ? new MessageQueue(@messageQueueName)
-                : MessageQueue.Create(@messageQueueName);
+            _messageQueue = messageQueue;
         }
 
-        public void Send(Tweet data)
+        public void Send(T data)
         {
-            Message message = new Message(data, new BinaryMessageFormatter());
-            messageQueue.Send(message);
+            _messageQueue.Enqueue(data);
         }
     }
 }

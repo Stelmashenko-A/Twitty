@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IGetter.cs" />
     <Compile Include="TweetGetter.cs" />
     <Compile Include="Visualizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,6 +1,6 @@
 ﻿namespace Twitty.Streaming
 {
-    public interface ISender<T>
+    public interface ISender<in T>
     {
          
         void Send(T data);

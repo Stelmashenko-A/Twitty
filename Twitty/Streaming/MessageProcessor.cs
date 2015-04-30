@@ -5,17 +5,17 @@ namespace Twitty.Streaming
 {
     public class MessageProcessor:IMessageProcessor
     {
-        public ISender<Tweet> Sender1 { get; private set; }
+        public ISender<string> Sender { get; private set; }
 
-        public MessageProcessor(ISender<Tweet> sender)
+        public MessageProcessor(ISender<string> sender)
         {
-            Sender1 = sender;
+            Sender = sender;
         }
         public void Proccess(string message)
         {
            
-                var tweet = Serializer<Tweet>.Deserialize(message);
-                Sender<Tweet>.SenderEventHandler(tweet);
+                //var tweet = Serializer<Tweet>.Deserialize(message);
+                //Sender<Tweet>.SenderEventHandler(tweet);
            
             
             //_sender.Send(tweet);

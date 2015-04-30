@@ -78,12 +78,16 @@
     <Compile Include="Kernel\StatusCollection.cs" />
     <Compile Include="Kernel\TwitterCollection.cs" />
     <Compile Include="Serialization\Serializer.cs" />
+    <Compile Include="Streaming\Getter.cs" />
+    <Compile Include="Streaming\IGetter.cs" />
     <Compile Include="Streaming\IMessageProcessor.cs" />
     <Compile Include="Streaming\ISender.cs" />
     <Compile Include="Streaming\MessageProcessor.cs" />
     <Compile Include="Streaming\MessageSender.cs" />
     <Compile Include="Streaming\Sender.cs" />
+    <Compile Include="Streaming\StreamSerializer.cs" />
     <Compile Include="Streaming\TwetterStream.cs" />
+    <Compile Include="Streaming\Visualizer.cs" />
     <Compile Include="Tweets\Contributor.cs" />
     <Compile Include="Tweets\Tweet.cs" />
     <Compile Include="Account\User.cs" />

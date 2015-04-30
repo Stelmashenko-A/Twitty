@@ -36,7 +36,7 @@ namespace Test
             MessageProcessor message = new MessageProcessor(sender);
             TwitterStream stream = new TwitterStream(message, tokens, "https://stream.twitter.com/1.1/statuses/filter.json", kw, new List<string>(), koordList);
             //Sender<Tweet>.SenderEventHandler = GetData;
-            IGetter<Tweet> getter = new TweetGetter(@".\private$\Twitter");
+            IGetter<Tweet> getter = new Getter(@".\private$\Twitter");
             
             //Visualizer<Tweet> visualizer = new Visualizer<Tweet>(getter,th);
             Thread th = new Thread(stream.Start);

@@ -1,4 +1,4 @@
-﻿namespace TwitterAnalyzer
+﻿namespace Twitty.Streaming
 {
     public interface IGetter<T>
     {

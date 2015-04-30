@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using Twitty.Geo;
-
 
 namespace TwitterAnalyzer
 {
@@ -15,14 +12,9 @@ namespace TwitterAnalyzer
             int x;
             int y;
             if (data.Coordinates.ShapeType == TwitterGeoShapeType.Point)
-            {
-                //data.Coordinates.Coordinates[0].Latitude = 53;
-                //data.Coordinates.Coordinates[0].Longitude = 24;
-
+            {   
                 x = (int) (data.Coordinates.Coordinates[0].Longitude/180*map.Width/2 + (double) map.Width/2);
                 y = (int) (-data.Coordinates.Coordinates[0].Latitude/90*map.Height/2 + (double) map.Height/2);
-                //x = 500;
-                //y = 250;
                 bm.SetPixel(x, y, Color.Black);
 
             }

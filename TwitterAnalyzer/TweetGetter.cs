@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Messaging;
+using Twitty.Streaming;
 using Twitty.Tweets;
 
 namespace TwitterAnalyzer
