@@ -7,7 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitty", "Twitty\Twitty.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserClient", "UserClient\UserClient.csproj", "{AB45E039-600E-460A-A14F-659FB667A248}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{7BF01D73-9B57-44F6-9088-0C1D19FB75DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test1", "Test1\Test1.csproj", "{11FD7E64-BCC5-48F5-9B8F-0C28B36FA54F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test3", "test3\test3.csproj", "{CFA899E7-5962-43BD-8B2F-EB5C1C770E8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterClient", "TwitterClient\TwitterClient.csproj", "{E00C4F80-9401-4E60-9A29-D7C809EF9940}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +27,18 @@ Global
 		{AB45E039-600E-460A-A14F-659FB667A248}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB45E039-600E-460A-A14F-659FB667A248}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB45E039-600E-460A-A14F-659FB667A248}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7BF01D73-9B57-44F6-9088-0C1D19FB75DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7BF01D73-9B57-44F6-9088-0C1D19FB75DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7BF01D73-9B57-44F6-9088-0C1D19FB75DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7BF01D73-9B57-44F6-9088-0C1D19FB75DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11FD7E64-BCC5-48F5-9B8F-0C28B36FA54F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11FD7E64-BCC5-48F5-9B8F-0C28B36FA54F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11FD7E64-BCC5-48F5-9B8F-0C28B36FA54F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11FD7E64-BCC5-48F5-9B8F-0C28B36FA54F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFA899E7-5962-43BD-8B2F-EB5C1C770E8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFA899E7-5962-43BD-8B2F-EB5C1C770E8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFA899E7-5962-43BD-8B2F-EB5C1C770E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFA899E7-5962-43BD-8B2F-EB5C1C770E8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E00C4F80-9401-4E60-9A29-D7C809EF9940}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E00C4F80-9401-4E60-9A29-D7C809EF9940}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E00C4F80-9401-4E60-9A29-D7C809EF9940}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E00C4F80-9401-4E60-9A29-D7C809EF9940}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
