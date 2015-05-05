@@ -6,10 +6,10 @@ using MetroFramework.Controls;
 namespace TwitterControls
 {
     
-    public partial class UserControl1: MetroUserControl
+    public partial class TweetControl: MetroUserControl
     {
         public event MyEventHandler MyEvent;
-        public UserControl1()
+        public TweetControl()
         {
             InitializeComponent();
         }
