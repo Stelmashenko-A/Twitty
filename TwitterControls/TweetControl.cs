@@ -2,6 +2,7 @@
 using System.Drawing;
 using MaterialSkin.Controls;
 using MetroFramework.Controls;
+using TweetSharp;
 
 namespace TwitterControls
 {
@@ -9,11 +10,14 @@ namespace TwitterControls
     public partial class TweetControl: MetroUserControl
     {
         public event MyEventHandler MyEvent;
-        public TweetControl()
+        public TweetControl(TwitterStatus status)
         {
+            _status = status;
             InitializeComponent();
+            label1.Text = status.Text;
         }
-        
+
+        private TwitterStatus _status;
         private void UserControl1_Load(object sender, EventArgs e)
         {
 

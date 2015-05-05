@@ -33,7 +33,9 @@
             // 
             // tweetList1
             // 
-            this.tweetList1.Location = new System.Drawing.Point(75, 12);
+            this.tweetList1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.tweetList1.Location = new System.Drawing.Point(108, 12);
+            this.tweetList1.MinimumSize = new System.Drawing.Size(440, 365);
             this.tweetList1.Name = "tweetList1";
             this.tweetList1.Size = new System.Drawing.Size(440, 365);
             this.tweetList1.TabIndex = 0;
@@ -42,7 +44,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(704, 618);
+            this.ClientSize = new System.Drawing.Size(704, 380);
             this.Controls.Add(this.tweetList1);
             this.Name = "MainWindow";
             this.Text = "Form1";
@@ -53,6 +55,7 @@
         #endregion
 
         private TwitterControls.TweetList tweetList1;
+
 
 
 
