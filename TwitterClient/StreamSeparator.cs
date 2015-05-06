@@ -1,12 +1,12 @@
 ﻿using System.Threading;
 using TweetSharp;
+using TwitterClient.Monitor;
 
 namespace TwitterClient
 {
     public class StreamSeparator
     {
-
-        public void Separate(TwitterService service, IAddable<TwitterStatus> statuses)
+        public void Separate(TwitterService service, IMonitor<TwitterStatus> statuses)
         {
 
             var block = new AutoResetEvent(false);
@@ -23,9 +23,8 @@ namespace TwitterClient
                     if (streamEvent is TwitterUserStreamStatus)
                     {
                         var tweet = ((TwitterUserStreamStatus) streamEvent).Status;
-                        statuses.Add(tweet);
+                        statuses.ProccessAsync(tweet);
                     }
-
                 }
             });
 

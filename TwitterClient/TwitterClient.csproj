@@ -53,6 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAddable.cs" />
+    <Compile Include="Monitor\IFilter.cs" />
+    <Compile Include="Monitor\IMonitor.cs" />
+    <Compile Include="Monitor\Monitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StreamSeparator.cs" />
     <Compile Include="TweetAnalizer.cs" />

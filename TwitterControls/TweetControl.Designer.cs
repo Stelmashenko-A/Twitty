@@ -49,7 +49,6 @@
             this.FavouriteCheckBox.TabIndex = 0;
             this.FavouriteCheckBox.Text = "Favoutite";
             this.FavouriteCheckBox.UseVisualStyleBackColor = true;
-            this.FavouriteCheckBox.CheckedChanged += new System.EventHandler(this.materialCheckBox1_CheckedChanged);
             // 
             // RetweetCheckBox
             // 
@@ -90,7 +89,6 @@
             this.MinimumSize = new System.Drawing.Size(400, 60);
             this.Name = "TweetControl";
             this.Size = new System.Drawing.Size(435, 60);
-            this.Load += new System.EventHandler(this.UserControl1_Load);
             this.ResumeLayout(false);
 
         }
