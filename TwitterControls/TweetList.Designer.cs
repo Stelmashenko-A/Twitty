@@ -49,7 +49,6 @@
             this.materialFlatButtonNewTweets.TabIndex = 3;
             this.materialFlatButtonNewTweets.Text = "materialFlatButton1";
             this.materialFlatButtonNewTweets.UseVisualStyleBackColor = true;
-            this.materialFlatButtonNewTweets.Click += new System.EventHandler(this.materialFlatButton1_Click);
             // 
             // button1
             // 
@@ -59,17 +58,17 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // timer
             // 
             this.timer.Interval = 101;
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // TweetList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.AutoScrollMargin = new System.Drawing.Size(2, 2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.materialFlatButtonNewTweets);
             this.DoubleBuffered = true;

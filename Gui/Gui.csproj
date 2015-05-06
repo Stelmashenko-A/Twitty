@@ -97,6 +97,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TwitterClient\TwitterClient.csproj">
+      <Project>{E00C4F80-9401-4E60-9A29-D7C809EF9940}</Project>
+      <Name>TwitterClient</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TwitterControls\TwitterControls.csproj">
       <Project>{7DB0523C-9CE3-40CE-93FA-7B9AFBEB4F7B}</Project>
       <Name>TwitterControls</Name>
