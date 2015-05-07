@@ -52,21 +52,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Filter\RewteetFilter.cs" />
+    <Compile Include="Filter\SpamFilter.cs" />
+    <Compile Include="Filter\UserRetweetFilter.cs" />
     <Compile Include="IAddable.cs" />
-    <Compile Include="Monitor\IFilter.cs" />
+    <Compile Include="Filter\IFilter.cs" />
+    <Compile Include="Filter\ITwitterStatusFilter.cs" />
     <Compile Include="Monitor\IMonitor.cs" />
     <Compile Include="Monitor\Monitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StreamSeparator.cs" />
     <Compile Include="TweetAnalizer.cs" />
     <Compile Include="TwitterClient.cs" />
+    <Compile Include="Filter\TwitterStatusFilter.cs" />
     <Compile Include="Users\TwitterGroup.cs" />
     <Compile Include="Statuses\TwitterStatusCollection.cs" />
     <Compile Include="Statuses\TwitterUniqueStatusCollection.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TwitterClient.Filter;
 
 namespace TwitterClient.Monitor
 {
