@@ -16,7 +16,7 @@ namespace TwitterClient.Monitor
             _database = database;
         }
 
-        private bool IsSkiped(T data)
+        private static bool IsSkiped(T data)
         {
             //TODO create filtres
             //return _filters.All(filter => filter.IsValid(data));

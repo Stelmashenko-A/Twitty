@@ -69,6 +69,12 @@
       <DependentUpon>TweetControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TweetViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TweetViewer.Designer.cs">
+      <DependentUpon>TweetViewer.cs</DependentUpon>
+    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +83,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TweetControl.resx">
       <DependentUpon>TweetControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TweetViewer.resx">
+      <DependentUpon>TweetViewer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

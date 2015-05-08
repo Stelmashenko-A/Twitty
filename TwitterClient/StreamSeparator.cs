@@ -18,14 +18,10 @@ namespace TwitterClient
                     block.Set();
                 }
 
-                if (response.StatusCode == 0)
-                {
-                    if (streamEvent is TwitterUserStreamStatus)
-                    {
-                        var tweet = ((TwitterUserStreamStatus) streamEvent).Status;
-                        statuses.ProccessAsync(tweet);
-                    }
-                }
+                if (response.StatusCode != 0) return;
+                if (!(streamEvent is TwitterUserStreamStatus)) return;
+                var tweet = ((TwitterUserStreamStatus) streamEvent).Status;
+                statuses.ProccessAsync(tweet);
             });
 
 

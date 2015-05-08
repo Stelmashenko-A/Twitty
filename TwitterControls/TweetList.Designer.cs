@@ -29,26 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.materialFlatButtonNewTweets = new MaterialSkin.Controls.MaterialFlatButton();
             this.button1 = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
-            // 
-            // materialFlatButtonNewTweets
-            // 
-            this.materialFlatButtonNewTweets.AutoSize = true;
-            this.materialFlatButtonNewTweets.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialFlatButtonNewTweets.Depth = 0;
-            this.materialFlatButtonNewTweets.Dock = System.Windows.Forms.DockStyle.Top;
-            this.materialFlatButtonNewTweets.Location = new System.Drawing.Point(0, 0);
-            this.materialFlatButtonNewTweets.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialFlatButtonNewTweets.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialFlatButtonNewTweets.Name = "materialFlatButtonNewTweets";
-            this.materialFlatButtonNewTweets.Primary = false;
-            this.materialFlatButtonNewTweets.Size = new System.Drawing.Size(440, 36);
-            this.materialFlatButtonNewTweets.TabIndex = 3;
-            this.materialFlatButtonNewTweets.Text = "materialFlatButton1";
-            this.materialFlatButtonNewTweets.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -70,19 +53,16 @@
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(2, 2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.materialFlatButtonNewTweets);
             this.DoubleBuffered = true;
             this.MinimumSize = new System.Drawing.Size(440, 365);
             this.Name = "TweetList";
             this.Size = new System.Drawing.Size(440, 365);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private MaterialSkin.Controls.MaterialFlatButton materialFlatButtonNewTweets;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Timer timer;
     }

@@ -28,33 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tweetList1 = new TwitterControls.TweetList();
+            this.tweetViewer1 = new TwitterControls.TweetViewer();
             this.SuspendLayout();
             // 
-            // tweetList1
+            // tweetViewer1
             // 
-            this.tweetList1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.tweetList1.Location = new System.Drawing.Point(108, 12);
-            this.tweetList1.MinimumSize = new System.Drawing.Size(440, 365);
-            this.tweetList1.Name = "tweetList1";
-            this.tweetList1.Size = new System.Drawing.Size(440, 365);
-            this.tweetList1.TabIndex = 0;
+            this.tweetViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tweetViewer1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tweetViewer1.Location = new System.Drawing.Point(138, 12);
+            this.tweetViewer1.Name = "tweetViewer1";
+            this.tweetViewer1.Size = new System.Drawing.Size(435, 380);
+            this.tweetViewer1.TabIndex = 0;
+            this.tweetViewer1.Load += new System.EventHandler(this.tweetViewer1_Load_1);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(704, 380);
-            this.Controls.Add(this.tweetList1);
+            this.Controls.Add(this.tweetViewer1);
             this.Name = "MainWindow";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private TwitterControls.TweetList tweetList1;
+        private TwitterControls.TweetViewer tweetViewer1;
+
 
 
 
