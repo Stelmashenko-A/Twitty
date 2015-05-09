@@ -39,6 +39,7 @@ namespace TwitterControls
         {
             tweetList1.AddRange(_buffer);
             materialFlatButton1.Hide();
+            _count = 0;
             Refresh();
         }
 

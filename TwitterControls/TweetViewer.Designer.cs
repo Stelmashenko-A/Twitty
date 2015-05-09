@@ -36,6 +36,7 @@
             // 
             this.materialFlatButton1.AutoSize = true;
             this.materialFlatButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialFlatButton1.BackColor = System.Drawing.SystemColors.Control;
             this.materialFlatButton1.Depth = 0;
             this.materialFlatButton1.Dock = System.Windows.Forms.DockStyle.Top;
             this.materialFlatButton1.Location = new System.Drawing.Point(0, 0);
@@ -46,7 +47,7 @@
             this.materialFlatButton1.Size = new System.Drawing.Size(494, 36);
             this.materialFlatButton1.TabIndex = 0;
             this.materialFlatButton1.Text = "materialFlatButton1";
-            this.materialFlatButton1.UseVisualStyleBackColor = true;
+            this.materialFlatButton1.UseVisualStyleBackColor = false;
             this.materialFlatButton1.Visible = false;
             this.materialFlatButton1.Click += new System.EventHandler(this.materialFlatButton1_Click);
             // 
@@ -55,6 +56,7 @@
             this.tweetList1.AutoScroll = true;
             this.tweetList1.AutoScrollMargin = new System.Drawing.Size(2, 2);
             this.tweetList1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tweetList1.BackColor = System.Drawing.SystemColors.Control;
             this.tweetList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tweetList1.Location = new System.Drawing.Point(0, 36);
             this.tweetList1.MinimumSize = new System.Drawing.Size(440, 365);
@@ -66,7 +68,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.tweetList1);
             this.Controls.Add(this.materialFlatButton1);
             this.Name = "TweetViewer";

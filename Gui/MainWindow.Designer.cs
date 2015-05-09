@@ -36,7 +36,7 @@
             this.tweetViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tweetViewer1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tweetViewer1.BackColor = System.Drawing.SystemColors.Control;
             this.tweetViewer1.Location = new System.Drawing.Point(138, 12);
             this.tweetViewer1.Name = "tweetViewer1";
             this.tweetViewer1.Size = new System.Drawing.Size(435, 380);

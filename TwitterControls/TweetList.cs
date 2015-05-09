@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TweetSharp;
-using TwitterClient;
 
 namespace TwitterControls
 {
@@ -33,20 +31,23 @@ namespace TwitterControls
                 AutoScrollMinSize = new Size(0, _controls.Last.Value.Location.Y + _controls.Last.Value.Height - Height);
             }
         }
+
+        private void PushItem(TweetControl tweetControl)
+        {
+            SetLocation(tweetControl.Height);
+            SetScrool();
+
+            tweetControl.Location = new Point((Width - tweetControl.Width) / 2, 0);
+
+            _controls.AddFirst(tweetControl);
+            Controls.Add(tweetControl);
+
+            Refresh();
+        }
         public void Add(TwitterStatus item)
         {
             var tweetControl = new TweetControl(item);
-            BeginInvoke(new Action(()=>SetLocation(tweetControl.Height)));
-            BeginInvoke(new Action(SetScrool));
-            tweetControl.Location = new Point((Width-tweetControl.Width)/2, 0);
-            _controls.AddFirst(tweetControl);
-            BeginInvoke(new Action(
-                () => Controls.Add(tweetControl)));
-            
-
-            BeginInvoke(new Action(
-                Refresh));
-
+            BeginInvoke(new Action(() => PushItem(tweetControl)));
         }
 
         public void AddRange(IEnumerable<TwitterStatus> items)
