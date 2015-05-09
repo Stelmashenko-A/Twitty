@@ -7,7 +7,7 @@ using MaterialSkin.Controls;
 
 namespace TwitterControls
 {
-    partial class TweetControl
+    sealed partial class TweetControl
     {
         /// <summary>
         /// Требуется переменная конструктора.
@@ -35,77 +35,64 @@ namespace TwitterControls
         /// </summary>
         private void InitializeComponent()
         {
-            this.FavouriteCheckBox = new MaterialCheckBox();
-            this.RetweetCheckBox = new MaterialCheckBox();
-            this.label1 = new Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.RetweetCheckBox = new System.Windows.Forms.CheckBox();
+            this.FavouriteCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
-            // FavouriteCheckBox
-            // 
-            this.FavouriteCheckBox.Anchor = ((AnchorStyles)((AnchorStyles.Bottom | AnchorStyles.Left)));
-            this.FavouriteCheckBox.Appearance = Appearance.Button;
-            this.FavouriteCheckBox.Depth = 0;
-            this.FavouriteCheckBox.Font = new Font("Roboto", 10F);
-            this.FavouriteCheckBox.Location = new Point(80, 41);
-            this.FavouriteCheckBox.Margin = new Padding(0);
-            this.FavouriteCheckBox.MouseLocation = new Point(-1, -1);
-            this.FavouriteCheckBox.MouseState = MouseState.HOVER;
-            this.FavouriteCheckBox.Name = "FavouriteCheckBox";
-            this.FavouriteCheckBox.Ripple = true;
-            this.FavouriteCheckBox.Size = new Size(86, 19);
-            this.FavouriteCheckBox.TabIndex = 0;
-            this.FavouriteCheckBox.Text = "Favoutite";
-            this.FavouriteCheckBox.UseVisualStyleBackColor = true;
-            this.FavouriteCheckBox.CheckedChanged += new EventHandler(this.FavouriteCheckBox_CheckedChanged);
-            // 
-            // RetweetCheckBox
-            // 
-            this.RetweetCheckBox.Anchor = ((AnchorStyles)((AnchorStyles.Bottom | AnchorStyles.Left)));
-            this.RetweetCheckBox.Depth = 0;
-            this.RetweetCheckBox.Font = new Font("Roboto", 10F);
-            this.RetweetCheckBox.Location = new Point(0, 41);
-            this.RetweetCheckBox.Margin = new Padding(0);
-            this.RetweetCheckBox.MouseLocation = new Point(-1, -1);
-            this.RetweetCheckBox.MouseState = MouseState.HOVER;
-            this.RetweetCheckBox.Name = "RetweetCheckBox";
-            this.RetweetCheckBox.Ripple = true;
-            this.RetweetCheckBox.Size = new Size(80, 19);
-            this.RetweetCheckBox.TabIndex = 1;
-            this.RetweetCheckBox.Text = "Retweet";
-            this.RetweetCheckBox.UseVisualStyleBackColor = true;
-            this.RetweetCheckBox.CheckedChanged += new EventHandler(this.RetweetCheckBox_CheckedChanged);
             // 
             // label1
             // 
-            this.label1.Anchor = ((AnchorStyles)(((AnchorStyles.Top | AnchorStyles.Bottom) 
-            | AnchorStyles.Left)));
-            this.label1.Location = new Point(0, 0);
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new Size(438, 40);
+            this.label1.Size = new System.Drawing.Size(438, 40);
             this.label1.TabIndex = 2;
             this.label1.Text = "123456789012345678901234567890123456789012345678901234567890123456789012345678901" +
     "23456789012345678901234567890123456789012345678901234567890";
             // 
+            // RetweetCheckBox
+            // 
+            this.RetweetCheckBox.AutoSize = true;
+            this.RetweetCheckBox.Location = new System.Drawing.Point(3, 43);
+            this.RetweetCheckBox.Name = "RetweetCheckBox";
+            this.RetweetCheckBox.Size = new System.Drawing.Size(66, 17);
+            this.RetweetCheckBox.TabIndex = 6;
+            this.RetweetCheckBox.Text = "Retweet";
+            this.RetweetCheckBox.UseVisualStyleBackColor = true;
+            this.RetweetCheckBox.CheckedChanged += new System.EventHandler(this.RetweetCheckBox_CheckedChanged);
+            // 
+            // FavouriteCheckBox
+            // 
+            this.FavouriteCheckBox.AutoSize = true;
+            this.FavouriteCheckBox.Location = new System.Drawing.Point(75, 43);
+            this.FavouriteCheckBox.Name = "FavouriteCheckBox";
+            this.FavouriteCheckBox.Size = new System.Drawing.Size(70, 17);
+            this.FavouriteCheckBox.TabIndex = 7;
+            this.FavouriteCheckBox.Text = "Favourite";
+            this.FavouriteCheckBox.UseVisualStyleBackColor = true;
+            this.FavouriteCheckBox.CheckedChanged += new System.EventHandler(this.FavouriteCheckBox_CheckedChanged);
+            // 
             // TweetControl
             // 
-            this.AutoScaleDimensions = new SizeF(6F, 13F);
-            //this.AutoScaleMode = AutoScaleMode.Font;
             this.AutoSize = true;
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.RetweetCheckBox);
             this.Controls.Add(this.FavouriteCheckBox);
-            this.MaximumSize = new Size(435, 60);
-            this.MinimumSize = new Size(400, 60);
+            this.Controls.Add(this.RetweetCheckBox);
+            this.Controls.Add(this.label1);
+            this.MaximumSize = new System.Drawing.Size(435, 60);
+            this.MinimumSize = new System.Drawing.Size(400, 60);
             this.Name = "TweetControl";
-            this.Size = new Size(435, 60);
+            this.Size = new System.Drawing.Size(435, 60);
+            this.Load += new System.EventHandler(this.TweetControl_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private MaterialCheckBox FavouriteCheckBox;
-        private MaterialCheckBox RetweetCheckBox;
         private Label label1;
+        private CheckBox RetweetCheckBox;
+        private CheckBox FavouriteCheckBox;
     }
 }
