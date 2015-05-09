@@ -21,30 +21,34 @@ namespace Gui
         public MainWindow()
         {
             InitializeComponent();
-            
+            TweetControl.FavoriteTweetEventHandlerEvent += SetFavorite;
+            TweetControl.RetweetEventHandlerEvent += SetRetweted;
+
         }
 
-        private void MainWindow_Load(object sender, System.EventArgs e)
+        private void MainWindow_Load(object sender, EventArgs e)
         {
             
         }
 
-        private void tweetList1_Load(object sender, EventArgs e)
+        private void SetFavorite(object sender, TwitterStatusEventArgs e)
         {
-            
+            _service.FavoriteTweet(new FavoriteTweetOptions()
+            {
+                Id = e.Id
+            });
         }
-
-        private void tweetViewer1_Load(object sender, EventArgs e)
+        private void SetRetweted(object sender, TwitterStatusEventArgs e)
         {
-            
+            _service.Retweet(new RetweetOptions()
+            {
+                Id = e.Id
+            });
         }
 
         private void tweetViewer1_Load_1(object sender, EventArgs e)
         {
             _service.AuthenticateWith(_access.Token, _access.TokenSecret);
-
-            // var asyncResult = _service.BeginListTweetsOnHomeTimeline(new ListTweetsOnHomeTimelineOptions() { Count = 10 });
-            // asyncResult.AsyncWaitHandle.WaitOne();
             IAsyncResult result = _service.ListTweetsOnHomeTimeline(new ListTweetsOnHomeTimelineOptions() { Count = 100 },
                 (tweets, response) =>
                 {
@@ -57,6 +61,7 @@ namespace Gui
             var streamSeparator = new StreamSeparator();
             IMonitor<TwitterStatus> statusMonitor = new Monitor<TwitterStatus>(null, tweetViewer1);
             streamSeparator.Separate(_service, statusMonitor);
+            
         }
 
 

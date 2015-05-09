@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
-using Tweetinvi;
-using Twitty.OAuth;
-using Twitty.Streaming;
-using Twitty.Tweets;
 
 namespace UserClient
 {
@@ -95,20 +86,5 @@ namespace UserClient
             
             
         }
-
-        private void Rewrite(Bitmap data)
-        {
-            if (data == null) throw new ArgumentNullException("data");
-            lock (pictureBox1)
-            {
-                //pictureBox1.Invoke(new Action());
-                pictureBox1.Invoke(
-                    new Action(
-                        () =>
-                            pictureBox1.Refresh()));
-            }
-        }
-
-       
     }
 }

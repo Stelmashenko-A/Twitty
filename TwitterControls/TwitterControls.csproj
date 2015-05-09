@@ -75,6 +75,7 @@
     <Compile Include="TweetViewer.Designer.cs">
       <DependentUpon>TweetViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="TwitterStatusEventArgs.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
