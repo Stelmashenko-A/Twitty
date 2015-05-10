@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TweetSharp;
+using TwitterClient.Decorator;
 
 namespace TwitterControls
 {
@@ -44,13 +45,13 @@ namespace TwitterControls
 
             Refresh();
         }
-        public void Add(TwitterStatus item)
+        public void Add(DecoratedTwitterStatus item)
         {
             var tweetControl = new TweetControl(item);
             BeginInvoke(new Action(() => PushItem(tweetControl)));
         }
 
-        public void AddRange(IEnumerable<TwitterStatus> items)
+        public void AddRange(IEnumerable<DecoratedTwitterStatus> items)
         {
             foreach (var variable in items)
             {
@@ -58,7 +59,7 @@ namespace TwitterControls
             }
         }
 
-        public void InializeTweets(IEnumerable<TwitterStatus> items)
+        public void InializeTweets(IEnumerable<DecoratedTwitterStatus> items)
         {
             var twitterStatuses = items.ToArray();
             var tweetControl = new TweetControl(twitterStatuses[0]) {Location = new Point(0, 0)};

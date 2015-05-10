@@ -55,17 +55,8 @@
             this.ResumeLayout(false);
 
         }
-
         #endregion
-
         private TwitterControls.TweetViewer tweetViewer1;
-
-
-
-
-
-
-
     }
 }
 

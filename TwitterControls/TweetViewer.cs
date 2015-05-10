@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using TweetSharp;
 using TwitterClient;
+using TwitterClient.Decorator;
 
 namespace TwitterControls
 {
-    public partial class TweetViewer : UserControl, IAddable<TwitterStatus>
+    public partial class TweetViewer : UserControl, IAddable<DecoratedTwitterStatus>
     {
         public TweetViewer()
         {
@@ -14,8 +14,8 @@ namespace TwitterControls
         }
 
         private int _count;
-        readonly List<TwitterStatus> _buffer = new List<TwitterStatus>();
-        public void Add(TwitterStatus item)
+        readonly List<DecoratedTwitterStatus> _buffer = new List<DecoratedTwitterStatus>();
+        public void Add(DecoratedTwitterStatus item)
         {
             if (_count == 0)
             {
@@ -27,7 +27,7 @@ namespace TwitterControls
             BeginInvoke(new Action(Refresh));
         }
 
-        public void AddRange(IEnumerable<TwitterStatus> item)
+        public void AddRange(IEnumerable<DecoratedTwitterStatus> item)
         {
             foreach (var variable in item)
             {
@@ -43,7 +43,7 @@ namespace TwitterControls
             Refresh();
         }
 
-        public void SetDataFromRestApi(IEnumerable<TwitterStatus> items)
+        public void SetDataFromRestApi(IEnumerable<DecoratedTwitterStatus> items)
         {
             tweetList1.InializeTweets(items);
         }

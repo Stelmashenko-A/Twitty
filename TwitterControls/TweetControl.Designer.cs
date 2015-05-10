@@ -61,6 +61,7 @@ namespace TwitterControls
             this.RetweetCheckBox.Text = "Retweet";
             this.RetweetCheckBox.UseVisualStyleBackColor = true;
             this.RetweetCheckBox.CheckedChanged += new System.EventHandler(this.RetweetCheckBox_CheckedChanged);
+            this.RetweetCheckBox.Click += new System.EventHandler(this.RetweetCheckBox_Click);
             // 
             // FavouriteCheckBox
             // 
@@ -71,7 +72,7 @@ namespace TwitterControls
             this.FavouriteCheckBox.TabIndex = 7;
             this.FavouriteCheckBox.Text = "Favourite";
             this.FavouriteCheckBox.UseVisualStyleBackColor = true;
-            this.FavouriteCheckBox.CheckedChanged += new System.EventHandler(this.FavouriteCheckBox_CheckedChanged);
+            this.FavouriteCheckBox.Click += new System.EventHandler(this.FavouriteCheckBox_Click);
             // 
             // TweetControl
             // 

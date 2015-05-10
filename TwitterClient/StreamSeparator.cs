@@ -6,7 +6,7 @@ namespace TwitterClient
 {
     public class StreamSeparator
     {
-        public void Separate(TwitterService service, IMonitor<TwitterStatus> statuses)
+        public void Separate(TwitterService service, IAddableAsync<TwitterStatus> statuses)
         {
 
             var block = new AutoResetEvent(false);
@@ -21,7 +21,7 @@ namespace TwitterClient
                 if (response.StatusCode != 0) return;
                 if (!(streamEvent is TwitterUserStreamStatus)) return;
                 var tweet = ((TwitterUserStreamStatus) streamEvent).Status;
-                statuses.ProccessAsync(tweet);
+                statuses.AddAsync(tweet);
             });
 
 

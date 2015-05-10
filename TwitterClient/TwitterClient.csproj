@@ -52,12 +52,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Decorator\DecoratedTwitterStatus.cs" />
+    <Compile Include="Decorator\Decorator.cs" />
+    <Compile Include="Decorator\IDecoratable.cs" />
+    <Compile Include="Decorator\IDecorator.cs" />
+    <Compile Include="Decorator\TwitterStatusDecorator.cs" />
     <Compile Include="Filter\RewteetFilter.cs" />
     <Compile Include="Filter\SpamFilter.cs" />
     <Compile Include="Filter\UserRetweetFilter.cs" />
     <Compile Include="IAddable.cs" />
     <Compile Include="Filter\IFilter.cs" />
     <Compile Include="Filter\ITwitterStatusFilter.cs" />
+    <Compile Include="IAddableAsync.cs" />
     <Compile Include="Monitor\IMonitor.cs" />
     <Compile Include="Monitor\Monitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,12 +71,12 @@
     <Compile Include="TweetAnalizer.cs" />
     <Compile Include="TwitterClient.cs" />
     <Compile Include="Filter\TwitterStatusFilter.cs" />
+    <Compile Include="UserProfile.cs" />
     <Compile Include="Users\TwitterGroup.cs" />
     <Compile Include="Statuses\TwitterStatusCollection.cs" />
     <Compile Include="Statuses\TwitterUniqueStatusCollection.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
