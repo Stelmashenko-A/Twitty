@@ -16,29 +16,24 @@ namespace TwitterClient
         public UserProfile(TwitterClient service)
         {
             TwitterUser = service.GetUserProfile(new GetUserProfileOptions());
-            if (!TryGetDataFromFile())
+            var b = service.FullListTweetsOnUserTimeline();
+            AuthenticatedUserRetweets = new Dictionary<long, long>();
+            foreach (var variable in b)
             {
-
-                var b = service.FullListTweetsOnUserTimeline();
-                AuthenticatedUserRetweets = new Dictionary<long, long>();
-                foreach (var variable in b)
+                if (variable.RetweetedStatus != null)
                 {
-                    if (variable.RetweetedStatus != null)
+                    if (variable.RetweetedStatus.RetweetedStatus != null)
                     {
-                        if (variable.RetweetedStatus.RetweetedStatus != null)
-                        {
-                            AuthenticatedUserRetweets.Add(variable.RetweetedStatus.RetweetedStatus.Id, variable.RetweetedStatus.Id);
-                        }
-                        else
-                        {
-                            if(variable.RetweetedStatus != null)
-                                AuthenticatedUserRetweets.Add(variable.RetweetedStatus.Id, variable.Id);
-                        }
-                        
+                        AuthenticatedUserRetweets.Add(variable.RetweetedStatus.RetweetedStatus.Id, variable.RetweetedStatus.Id);
                     }
+                    else
+                    {
+                        if(variable.RetweetedStatus != null)
+                            AuthenticatedUserRetweets.Add(variable.RetweetedStatus.Id, variable.Id);
+                    }
+                        
                 }
             }
-
         }
 
         private bool TryGetDataFromFile()

@@ -1,6 +1,5 @@
 ﻿using System;
 using MetroFramework.Controls;
-using TweetSharp;
 using TwitterClient.Decorator;
 
 namespace TwitterControls

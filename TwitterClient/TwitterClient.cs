@@ -1,23 +1,34 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TweetSharp;
+using Twitty.OAuth;
 
 namespace TwitterClient
 {
     public sealed class TwitterClient:TwitterService
     {
         TwitterService _twitterService = new TwitterService();
+        private OAuthTokens _currentAuthTokens = new OAuthTokens();
 
         private TwitterUser _currentUser;
 
         public TwitterClient(string consumerKey, string consumerSecret) : base(consumerKey, consumerSecret)
         {
-    
+            _currentAuthTokens.ConsumerKey = consumerKey;
+            _currentAuthTokens.ConsumerSecret = consumerSecret;
         }
         public override void AuthenticateWith(string token, string tokenSecret)
         {
             base.AuthenticateWith(token, tokenSecret);
+            _currentAuthTokens.AccessToken = token;
+            _currentAuthTokens.AccessTokenSecret = tokenSecret;
             _currentUser = GetUserProfile(new GetUserProfileOptions());
+        }
+
+        public override TwitterStatus DeleteTweet(DeleteTweetOptions options)
+        {
+            Twitty.Tweets.Tweet.Delete(_currentAuthTokens, options.Id);
+            return base.DeleteTweet(options);
         }
 
         public IEnumerable<TwitterStatus> FullListTweetsOnUserTimeline()
@@ -38,6 +49,7 @@ namespace TwitterClient
             } while (result.Count < 3200 && result.Count < _currentUser.StatusesCount);
             return result;
         }
+
 
     }
 }

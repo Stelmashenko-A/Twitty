@@ -101,5 +101,11 @@ namespace Twitty.Tweets
             var command = new CommandForStatusUpdating(tokens, text);
             return CommandPerfomer.PerformCommand(command);
         }
+        public static Response<Tweet> Delete(OAuthTokens tokens, long id)
+        {
+            var command = new DeleteStatusCommand(tokens, id);
+
+            return CommandPerfomer.PerformCommand(command);
+        }
     }
 }
