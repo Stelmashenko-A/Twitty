@@ -44,7 +44,7 @@
             this.materialFlatButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialFlatButton1.Name = "materialFlatButton1";
             this.materialFlatButton1.Primary = false;
-            this.materialFlatButton1.Size = new System.Drawing.Size(494, 36);
+            this.materialFlatButton1.Size = new System.Drawing.Size(440, 36);
             this.materialFlatButton1.TabIndex = 0;
             this.materialFlatButton1.Text = "materialFlatButton1";
             this.materialFlatButton1.UseVisualStyleBackColor = false;
@@ -61,7 +61,7 @@
             this.tweetList1.Location = new System.Drawing.Point(0, 36);
             this.tweetList1.MinimumSize = new System.Drawing.Size(440, 365);
             this.tweetList1.Name = "tweetList1";
-            this.tweetList1.Size = new System.Drawing.Size(494, 392);
+            this.tweetList1.Size = new System.Drawing.Size(440, 464);
             this.tweetList1.TabIndex = 1;
             // 
             // TweetViewer
@@ -71,8 +71,10 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.tweetList1);
             this.Controls.Add(this.materialFlatButton1);
+            this.MaximumSize = new System.Drawing.Size(440, 500);
+            this.MinimumSize = new System.Drawing.Size(440, 500);
             this.Name = "TweetViewer";
-            this.Size = new System.Drawing.Size(494, 428);
+            this.Size = new System.Drawing.Size(440, 500);
             this.ResumeLayout(false);
             this.PerformLayout();
 

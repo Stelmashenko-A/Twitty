@@ -37,7 +37,7 @@ namespace Twitty.Commands
             }
             //Never delete next string: "HttpWebResponse resp = requestBuilder.ExecutedRequest;"
             //ignor ReSharper here
-            var resp = requestBuilder.ExecutedRequest;
+            var resp = requestBuilder.ExecuteRequest();
             _responseData = ConversionUtility.ReadStream(resp.GetResponseStream());
             twitterResponse.Content = Encoding.UTF8.GetString(_responseData, 0, _responseData.Length);
             twitterResponse.ResponseObject = Serializer<T>.Deseialize(_responseData);

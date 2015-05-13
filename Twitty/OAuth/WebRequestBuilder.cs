@@ -49,13 +49,12 @@ namespace Twitty.OAuth
 
         public bool UseOAuth { get; private set; }
 
-        public HttpWebResponse ExecutedRequest
+        public HttpWebResponse ExecuteRequest()
         {
-            get
-            {
+            
                 var request = PreparedRequest;
                 return (HttpWebResponse) request.GetResponse();
-            }
+            
         }
 
         public HttpWebRequest PreparedRequest
@@ -154,29 +153,101 @@ namespace Twitty.OAuth
         {
             try
             {
+                
                 //Initialize parametres of request
-                Parameters.Add("oauth_consumer_key", Tokens.ConsumerKey);
-                Parameters.Add("oauth_consumer_secret", Tokens.ConsumerSecret);
-                Parameters.Add("oauth_nonce", GenerateNonce());
-                Parameters.Add("oauth_signature_method", "HMAC-SHA1");
-                Parameters.Add("oauth_timestamp", GenerateTimeStamp());
-                Parameters.Add("oauth_version", "1.0");
+                if (!Parameters.ContainsKey("oauth_consumer_key"))
+                {
+                    Parameters.Add("oauth_consumer_key", Tokens.ConsumerKey);
+                }
+                else
+                {
+                    Parameters["oauth_consumer_key"] = Tokens.ConsumerKey;
+                }
+
+                if (!Parameters.ContainsKey("oauth_consumer_secret"))
+                {
+                    Parameters.Add("oauth_consumer_secret", Tokens.ConsumerSecret);
+                }
+                else
+                {
+                    Parameters["oauth_consumer_secret"] = Tokens.ConsumerSecret;
+                }
+
+                if (!Parameters.ContainsKey("oauth_nonce"))
+                {
+                    Parameters.Add("oauth_nonce", GenerateNonce());
+                }
+                else
+                {
+                    Parameters["oauth_nonce"] = GenerateNonce();
+                }
+
+                if (!Parameters.ContainsKey("oauth_signature_method"))
+                {
+                    Parameters.Add("oauth_signature_method", "HMAC-SHA1");
+                }
+                else
+                {
+                    Parameters["oauth_signature_method"] = "HMAC-SHA1";
+                }
+
+                if (!Parameters.ContainsKey("oauth_timestamp"))
+                {
+                    Parameters.Add("oauth_timestamp", GenerateTimeStamp());
+                }
+                else
+                {
+                    Parameters["oauth_timestamp"] = GenerateTimeStamp();
+                }
+
+                if (!Parameters.ContainsKey("oauth_version"))
+                {
+                    Parameters.Add("oauth_version", "1.0");
+                }
+                else
+                {
+                    Parameters["oauth_version"] = "1.0";
+                }
+
                 if (!string.IsNullOrEmpty(Tokens.AccessToken))
                 {
-                    Parameters.Add("oauth_token", Tokens.AccessToken);
+                    if (!Parameters.ContainsKey("oauth_token"))
+                    {
+                        Parameters.Add("oauth_token", Tokens.AccessToken);
+                    }
+                    else
+                    {
+                        Parameters["oauth_token"] = Tokens.AccessToken;
+                    }
                 }
 
                 if (!string.IsNullOrEmpty(Tokens.AccessTokenSecret))
                 {
-                    Parameters.Add("oauth_token_secret", Tokens.AccessTokenSecret);
+                    if (!Parameters.ContainsKey("oauth_token_secret"))
+                    {
+                        Parameters.Add("oauth_token_secret", Tokens.AccessTokenSecret);
+                    }
+                    else
+                    {
+                        Parameters["oauth_token_secret"] = Tokens.AccessTokenSecret;
+                    }
+
                 }
                 //Signature generation with using parametres
                 var signature = GenerateSignature();
-                Parameters.Add("oauth_signature", signature);
+                if (!Parameters.ContainsKey("oauth_signature"))
+                {
+                    Parameters.Add("oauth_signature", signature);
+                }
+                else
+                {
+                    Parameters["oauth_signature"] = signature;
+                }
+
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                // ignored
+                int i;
             }
         }
 

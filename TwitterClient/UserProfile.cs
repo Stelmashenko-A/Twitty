@@ -51,7 +51,7 @@ namespace TwitterClient
             {
                 sr = new StreamReader(new FileStream(_path, FileMode.Open));
             }
-            catch (IOException ex)
+            catch (IOException)
             {
                 return false;
             }

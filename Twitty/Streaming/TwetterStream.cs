@@ -233,7 +233,7 @@ namespace Twitty.Streaming
             
             var wb = new WebRequestBuilder(new Uri(url), HttpVerb.Post, tokens);
             // ReSharper disable once UnusedVariable
-            var resp = wb.ExecutedRequest;
+            var resp = wb.ExecuteRequest();
 
             return wb.AuthorizationHeader;
         }

@@ -72,6 +72,7 @@ namespace TwitterControls
             this.FavouriteCheckBox.TabIndex = 7;
             this.FavouriteCheckBox.Text = "Favourite";
             this.FavouriteCheckBox.UseVisualStyleBackColor = true;
+            this.FavouriteCheckBox.CheckedChanged += new System.EventHandler(this.FavouriteCheckBox_CheckedChanged);
             this.FavouriteCheckBox.Click += new System.EventHandler(this.FavouriteCheckBox_Click);
             // 
             // TweetControl

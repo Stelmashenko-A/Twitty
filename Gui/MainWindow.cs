@@ -45,7 +45,8 @@ namespace Gui
 
         private void SetUndoFavorite(object sender, TwitterStatusEventArgs e)
         {
-            _service.FavoriteTweet(new FavoriteTweetOptions()
+            
+            _service.UndoFavourite(new FavoriteTweetOptions()
             {
                 Id = e.Id
             });

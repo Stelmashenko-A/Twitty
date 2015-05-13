@@ -64,6 +64,7 @@
     <Compile Include="Commands\DeleteStatusCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\PagedTimelineCommand.cs" />
+    <Compile Include="Commands\UndoFavorite.cs" />
     <Compile Include="Commands\UserTimelineCommand.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Hashtags.cs" />

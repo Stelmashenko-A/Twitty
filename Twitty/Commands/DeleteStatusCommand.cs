@@ -11,7 +11,7 @@ namespace Twitty.Commands
         public DeleteStatusCommand(OAuthTokens tokens, decimal id)
             : base(
                 HttpVerb.Post,
-                string.Format(CultureInfo.InvariantCulture, "https://api.twitter.com/1.1/statuses/destroy/{0}.json", id),
+                string.Format(CultureInfo.InvariantCulture, "https://api.twitter.com/1.1/statuses/destroy.json"),
                 tokens,
                 (TwitterOptions)null)
         {

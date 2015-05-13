@@ -68,12 +68,12 @@ namespace TwitterControls
 
         private void FavouriteCheckBox_Click(object sender, EventArgs e)
         {
-           /* if (FavouriteCheckBox.Checked)
+            if (FavouriteCheckBox.Checked)
             {
                 OnFavoriteTweetEventHandlerEvent(new TwitterStatusEventArgs(_status.Base.Id));
                 return;
             }
-            OnUndoFavoriteTweetEventHandlerEvent(new TwitterStatusEventArgs(_status.RetweetedStatus.Id));*/
+            OnUndoFavoriteTweetEventHandlerEvent(new TwitterStatusEventArgs(_status.Base.Id));
         }
 
         private void RetweetCheckBox_Click(object sender, EventArgs e)
@@ -93,6 +93,11 @@ namespace TwitterControls
         }
 
         private void RetweetCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FavouriteCheckBox_CheckedChanged(object sender, EventArgs e)
         {
 
         }

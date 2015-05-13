@@ -15,7 +15,7 @@ namespace Twitty.OAuth
             var webRequestBuilder = new WebRequestBuilder(new Uri("https://api.twitter.com/oauth/request_token"),
                 HttpVerb.Post, new OAuthTokens {ConsumerKey = consumerKey, ConsumerSecret = consumerSecret});
             var result = string.Empty;
-            var httpWebResponse = webRequestBuilder.ExecutedRequest;
+            var httpWebResponse = webRequestBuilder.ExecuteRequest();
             var stream = httpWebResponse.GetResponseStream();
             if (stream != null)
             {
@@ -54,7 +54,7 @@ namespace Twitty.OAuth
             webRequestBuilder.Parameters.Add("oauth_verifier", verifier);
             webRequestBuilder.Parameters.Add("oauth_token", requestToken);
 
-            var webResponse = webRequestBuilder.ExecutedRequest;
+            var webResponse = webRequestBuilder.ExecuteRequest();
             // ReSharper disable once AssignNullToNotNullAttribute
             var twitterAnswer = new StreamReader(stream: webResponse.GetResponseStream()).ReadToEnd();
             var response = new GettingOAuthTokens

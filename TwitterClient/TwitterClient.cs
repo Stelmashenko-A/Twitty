@@ -31,6 +31,11 @@ namespace TwitterClient
             return base.DeleteTweet(options);
         }
 
+        public void UndoFavourite(FavoriteTweetOptions options)
+        {
+            Twitty.Tweets.Tweet.UndoFavourite(_currentAuthTokens, options.Id);
+        }
+
         public IEnumerable<TwitterStatus> FullListTweetsOnUserTimeline()
         {
             var result = new List<TwitterStatus>();
