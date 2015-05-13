@@ -60,7 +60,7 @@ namespace Gui
         }
         private void SetUndoRetweted(object sender, TwitterStatusEventArgs e)
         {
-            _service.DeleteTweet(new DeleteTweetOptions() { Id = 597782746379976704 });
+            _service.DeleteTweet(new DeleteTweetOptions() { Id = e.Id });
         }
 
         private void tweetViewer1_Load_1(object sender, EventArgs e)

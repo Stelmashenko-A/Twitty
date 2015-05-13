@@ -74,13 +74,13 @@ namespace TwitterClient
 
         ~UserProfile()
         {
-            StreamWriter streamWriter = new StreamWriter(new FileStream(_path,FileMode.Create));
+            /*StreamWriter streamWriter = new StreamWriter(new FileStream(_path,FileMode.Create));
             streamWriter.WriteLine(_maxTweetId);
             foreach (var variable in AuthenticatedUserRetweets)
             {
                 streamWriter.WriteLine(variable.Key+","+variable.Value);
             }
-            streamWriter.Close();
+            streamWriter.Close();*/
         }
     }
 }

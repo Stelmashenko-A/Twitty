@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using TweetSharp;
+using MetroFramework.Controls;
 using TwitterClient.Decorator;
 
 namespace TwitterControls
 {
-    public partial class TweetList : UserControl
+    public partial class TweetList : MetroUserControl
     {
         public TweetList()
         {
@@ -66,8 +66,11 @@ namespace TwitterControls
             _controls.AddFirst(tweetControl);
             var location = tweetControl.Height + 5;
             var control = tweetControl;
+
             BeginInvoke(new Action(
-                () => Controls.Add(control)));
+                    () => Controls.Add(control)));
+
+            
             for (var i = 1; i < twitterStatuses.Count(); i++)
             {
                 tweetControl = new TweetControl(twitterStatuses[i]) { Location = new Point(0, location) };

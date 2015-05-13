@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Drawing;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using MaterialSkin.Controls;
 using MetroFramework.Controls;
 using TwitterClient.Decorator;
 
@@ -24,22 +28,66 @@ namespace TwitterControls
         {
             InitializeComponent();
         }
+
+        public CheckBox RetweetCheckBox;
+
         public TweetControl(DecoratedTwitterStatus status)
         {
-            InitializeComponent();
             _status = status;
+            InitializeComponent();
+            InitilizeCheckboxes();
             
-            label1.Text = status.Base.Text;
-            if (status.Base.IsFavorited)
+            Refresh();
+
+            label1.Text = _status.Base.Text;
+            if (_status.Base.IsFavorited)
             {
                 FavouriteCheckBox.Checked = true;
             }
-            if (status.IsRetweted)
+            if (_status.IsRetweted)
             {
                 RetweetCheckBox.Checked = true;
             }
         }
 
+        private void InitilizeCheckboxes()
+        {
+            FavouriteCheckBox = new MaterialCheckBox
+            {
+                Text = "Favourite",
+                Depth = 0,
+                Ripple = true,
+                
+
+                Location = new Point(150, 60),
+                Name = "FavouriteCheckBox",
+                Size = new Size(150, 17),
+                TabIndex = 7,
+                
+                UseVisualStyleBackColor = true
+            };
+
+
+           
+            FavouriteCheckBox.CheckedChanged += FavouriteCheckBox_CheckedChanged;
+            FavouriteCheckBox.Click += FavouriteCheckBox_Click;
+            Controls.Add(FavouriteCheckBox);
+
+            RetweetCheckBox = new MaterialCheckBox
+            {
+                Text = "Retweet  ",
+                
+                Location = new Point(0, 60),
+                Name = "RetweetCheckBox",
+                Size = new Size(150, 17),
+                TabIndex = 7,
+                
+                UseVisualStyleBackColor = true
+            };
+            RetweetCheckBox.CheckedChanged += RetweetCheckBox_CheckedChanged;
+            RetweetCheckBox.Click += RetweetCheckBox_Click;
+            Controls.Add(RetweetCheckBox);
+        }
 
 
         private void OnFavoriteTweetEventHandlerEvent(TwitterStatusEventArgs e)
@@ -98,6 +146,11 @@ namespace TwitterControls
         }
 
         private void FavouriteCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialCheckBox1_CheckedChanged(object sender, EventArgs e)
         {
 
         }

@@ -45,7 +45,7 @@ namespace TwitterControls
 
         public void SetDataFromRestApi(IEnumerable<DecoratedTwitterStatus> items)
         {
-            tweetList1.InializeTweets(items);
+            BeginInvoke(new Action(()=>tweetList1.InializeTweets(items)));
         }
     }
 }
