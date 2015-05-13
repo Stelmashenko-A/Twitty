@@ -55,7 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\TimeLine.cs" />
-    <Compile Include="Account\TwitterAccount.cs" />
     <Compile Include="Account\Response.cs" />
     <Compile Include="Account\UserCollection.cs" />
     <Compile Include="Commands\CommandForStatusUpdating.cs" />
@@ -69,31 +68,27 @@
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Hashtags.cs" />
     <Compile Include="Entities\Media.cs" />
-    <Compile Include="Entities\Size.cs" />
-    <Compile Include="Entities\Sizes.cs" />
     <Compile Include="Entities\TwitterUrl.cs" />
     <Compile Include="Entities\UserMention.cs" />
     <Compile Include="Geo\Coordinate.cs" />
     <Compile Include="Geo\IGeo.cs" />
     <Compile Include="Geo\TwitterGeo.cs" />
+    <Compile Include="Geo\TwitterGeoShapeType.cs" />
     <Compile Include="Kernel\ITwitterObject.cs" />
     <Compile Include="Kernel\StatusCollection.cs" />
     <Compile Include="Kernel\TwitterCollection.cs" />
     <Compile Include="Serialization\Serializer.cs" />
+    <Compile Include="Streaming\StreamSerializer.cs" />
     <Compile Include="Streaming\Getter.cs" />
     <Compile Include="Streaming\IGetter.cs" />
     <Compile Include="Streaming\IMessageProcessor.cs" />
     <Compile Include="Streaming\ISender.cs" />
-    <Compile Include="Streaming\MessageProcessor.cs" />
     <Compile Include="Streaming\MessageSender.cs" />
-    <Compile Include="Streaming\Sender.cs" />
-    <Compile Include="Streaming\StreamSerializer.cs" />
     <Compile Include="Streaming\TwetterStream.cs" />
     <Compile Include="Streaming\Visualizer.cs" />
     <Compile Include="Tweets\Contributor.cs" />
     <Compile Include="Tweets\Tweet.cs" />
     <Compile Include="Account\User.cs" />
-    <Compile Include="Kernel\Account.cs" />
     <Compile Include="Kernel\IDataReader.cs" />
     <Compile Include="OAuth\HTTPVerb.cs" />
     <Compile Include="OAuth\GettingOAuthTokens.cs" />

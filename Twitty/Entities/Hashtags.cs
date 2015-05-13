@@ -7,6 +7,7 @@ namespace Twitty.Entities
     public class Hashtags
     {
         public List<int> Indices { get; set; }
-        public String Text { get; set; }
+
+        public string Text { get; set; }
     }
 }

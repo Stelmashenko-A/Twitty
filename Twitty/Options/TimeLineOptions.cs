@@ -43,5 +43,4 @@ namespace Twitty.Options
                 command.Parameters.Add("trim_user", "true");
         }
     }
-
 }

@@ -5,9 +5,10 @@ using Twitty.Kernel;
 
 namespace Twitty.Serialization
 {
-    static public class Serializer<T> where T:ITwitterObject
+    public static class Serializer<T> where T : ITwitterObject
     {
         public delegate T DeserializationHandler(JObject value);
+
         public static T Deseialize(byte[] data)
         {
             return Deserialize(Encoding.UTF8.GetString(data, 0, data.Length));

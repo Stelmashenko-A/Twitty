@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 using Twitty.OAuth;
-using Twitty.Options;
 using Twitty.Tweets;
 
 namespace Twitty.Commands
 {
-    class UndoFavoriteCommand : CommandToTwitter<Tweet>
+    internal class UndoFavoriteCommand : CommandToTwitter<Tweet>
     {
         public UndoFavoriteCommand(OAuthTokens tokens, decimal id)
             : base(
                 HttpVerb.Post,
                 string.Format(CultureInfo.InvariantCulture, "https://api.twitter.com/1.1/favorites/destroy.json"),
                 tokens,
-                (TwitterOptions)null)
+                null)
         {
             Id = id;
         }
@@ -26,7 +20,7 @@ namespace Twitty.Commands
 
         public override void Initialize()
         {
-            Parameters.Add("id",Id.ToString(CultureInfo.InvariantCulture));
+            Parameters.Add("id", Id.ToString(CultureInfo.InvariantCulture));
         }
     }
 }

@@ -14,16 +14,18 @@ namespace Twitty.OAuth
         public const string Api = "Twitter API";
         public bool AddRealm = true;
         public bool AddUserAgent = true;
-        
-        
-        private static readonly string[] PublicParameters = {
+
+
+        private static readonly string[] PublicParameters =
+        {
             "oauth_consumer_secret",
             "oauth_signature",
             "oauth_token_secret"
-           
+
         };
 
-        private static readonly string[] ParametersInHeader = {
+        private static readonly string[] ParametersInHeader =
+        {
             "oauth_consumer_key",
             "oauth_nonce",
             "oauth_signature_method",
@@ -42,40 +44,38 @@ namespace Twitty.OAuth
 
         public HttpVerb Verb { get; set; }
 
-        private GettingOAuthTokens GettingOAuthTokens
-        {
-            get; set;
-        }
-
         public bool UseOAuth { get; private set; }
 
         public HttpWebResponse ExecuteRequest()
         {
-            
-                var request = PreparedRequest;
-                return (HttpWebResponse) request.GetResponse();
-            
+
+            var request = PreparedRequest;
+            return (HttpWebResponse) request.GetResponse();
+
         }
 
         public HttpWebRequest PreparedRequest
         {
             get
-            {   //Parameters initialization (tokens, signature and etc.)
+            {
+                //Parameters initialization (tokens, signature and etc.)
                 SetupParametrs();
                 //Adding parametres to Uri from dictionary "Parameters"
                 AddParametersToUri();
 
                 //Reqest creating and initialization
-                var request = (HttpWebRequest)WebRequest.Create(RequestUri);
+                var request = (HttpWebRequest) WebRequest.Create(RequestUri);
                 request.AutomaticDecompression = DecompressionMethods.None;
                 request.UseDefaultCredentials = true;
                 request.Method = Verb.ToString();
                 request.ContentLength = 0;
+
                 if (AddUserAgent)
                 {
                     request.UserAgent = string.Format(CultureInfo.InvariantCulture, "Twitty/{0}",
                         System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
                 }
+
                 request.ServicePoint.Expect100Continue = false;
                 request.Headers.Add("Authorization", GenerateAuthorizationHeader());
 
@@ -85,34 +85,35 @@ namespace Twitty.OAuth
 
         public string GenerateAuthorizationHeader()
         {
-           
+
             var authHeaderBuilder = new StringBuilder();
             if (AddRealm)
             {
                 authHeaderBuilder.AppendFormat("OAuth realm=\"{0}\"", Api);
             }
+
             //By OAuth protocol parameters must be sorted in lexicographic order
             var sortedParameters = from p in Parameters
-                                   where ParametersInHeader.Contains(p.Key)
-                                   orderby p.Key, UrlEncode( (p.Value is string) ? (string)p.Value : string.Empty)
-                                   select p;
+                where ParametersInHeader.Contains(p.Key)
+                orderby p.Key, UrlEncode((p.Value is string) ? (string) p.Value : string.Empty)
+                select p;
 
             foreach (var value in sortedParameters)
             {
                 authHeaderBuilder.AppendFormat(
                     ",{0}=\"{1}\"",
                     UrlEncode(value.Key),
-                    UrlEncode((string)value.Value ));
+                    UrlEncode((string) value.Value));
             }
             //By OAuth protocol there is signature after parametres
 
-                authHeaderBuilder.AppendFormat(",oauth_signature=\"{0}\"",
-                    UrlEncode((string) Parameters["oauth_signature"]));
+            authHeaderBuilder.AppendFormat(",oauth_signature=\"{0}\"",
+                UrlEncode((string) Parameters["oauth_signature"]));
 
-                AuthorizationHeader = authHeaderBuilder.ToString();
+            AuthorizationHeader = authHeaderBuilder.ToString();
             return AuthorizationHeader;
         }
-        
+
         public WebRequestBuilder(Uri requestUri, HttpVerb verb)
         {
             if (requestUri == null)
@@ -144,110 +145,96 @@ namespace Twitty.OAuth
             Tokens = tokens;
         }
 
-        public WebRequestBuilder(Uri requestUri, HttpVerb verb, OAuthTokens oAuthTokensokens, GettingOAuthTokens gettingOAuthTokens)
-            : this(requestUri, verb, oAuthTokensokens)
-        {
-            GettingOAuthTokens = gettingOAuthTokens;
-        }
         private void SetupParametrs()
         {
-            try
+            //Initialize parametres of request
+            if (!Parameters.ContainsKey("oauth_consumer_key"))
             {
-                
-                //Initialize parametres of request
-                if (!Parameters.ContainsKey("oauth_consumer_key"))
+                Parameters.Add("oauth_consumer_key", Tokens.ConsumerKey);
+            }
+            else
+            {
+                Parameters["oauth_consumer_key"] = Tokens.ConsumerKey;
+            }
+
+            if (!Parameters.ContainsKey("oauth_consumer_secret"))
+            {
+                Parameters.Add("oauth_consumer_secret", Tokens.ConsumerSecret);
+            }
+            else
+            {
+                Parameters["oauth_consumer_secret"] = Tokens.ConsumerSecret;
+            }
+
+            if (!Parameters.ContainsKey("oauth_nonce"))
+            {
+                Parameters.Add("oauth_nonce", GenerateNonce());
+            }
+            else
+            {
+                Parameters["oauth_nonce"] = GenerateNonce();
+            }
+
+            if (!Parameters.ContainsKey("oauth_signature_method"))
+            {
+                Parameters.Add("oauth_signature_method", "HMAC-SHA1");
+            }
+            else
+            {
+                Parameters["oauth_signature_method"] = "HMAC-SHA1";
+            }
+
+            if (!Parameters.ContainsKey("oauth_timestamp"))
+            {
+                Parameters.Add("oauth_timestamp", GenerateTimeStamp());
+            }
+            else
+            {
+                Parameters["oauth_timestamp"] = GenerateTimeStamp();
+            }
+
+            if (!Parameters.ContainsKey("oauth_version"))
+            {
+                Parameters.Add("oauth_version", "1.0");
+            }
+            else
+            {
+                Parameters["oauth_version"] = "1.0";
+            }
+
+            if (!string.IsNullOrEmpty(Tokens.AccessToken))
+            {
+                if (!Parameters.ContainsKey("oauth_token"))
                 {
-                    Parameters.Add("oauth_consumer_key", Tokens.ConsumerKey);
+                    Parameters.Add("oauth_token", Tokens.AccessToken);
                 }
                 else
                 {
-                    Parameters["oauth_consumer_key"] = Tokens.ConsumerKey;
+                    Parameters["oauth_token"] = Tokens.AccessToken;
                 }
+            }
 
-                if (!Parameters.ContainsKey("oauth_consumer_secret"))
+            if (!string.IsNullOrEmpty(Tokens.AccessTokenSecret))
+            {
+                if (!Parameters.ContainsKey("oauth_token_secret"))
                 {
-                    Parameters.Add("oauth_consumer_secret", Tokens.ConsumerSecret);
+                    Parameters.Add("oauth_token_secret", Tokens.AccessTokenSecret);
                 }
                 else
                 {
-                    Parameters["oauth_consumer_secret"] = Tokens.ConsumerSecret;
-                }
-
-                if (!Parameters.ContainsKey("oauth_nonce"))
-                {
-                    Parameters.Add("oauth_nonce", GenerateNonce());
-                }
-                else
-                {
-                    Parameters["oauth_nonce"] = GenerateNonce();
-                }
-
-                if (!Parameters.ContainsKey("oauth_signature_method"))
-                {
-                    Parameters.Add("oauth_signature_method", "HMAC-SHA1");
-                }
-                else
-                {
-                    Parameters["oauth_signature_method"] = "HMAC-SHA1";
-                }
-
-                if (!Parameters.ContainsKey("oauth_timestamp"))
-                {
-                    Parameters.Add("oauth_timestamp", GenerateTimeStamp());
-                }
-                else
-                {
-                    Parameters["oauth_timestamp"] = GenerateTimeStamp();
-                }
-
-                if (!Parameters.ContainsKey("oauth_version"))
-                {
-                    Parameters.Add("oauth_version", "1.0");
-                }
-                else
-                {
-                    Parameters["oauth_version"] = "1.0";
-                }
-
-                if (!string.IsNullOrEmpty(Tokens.AccessToken))
-                {
-                    if (!Parameters.ContainsKey("oauth_token"))
-                    {
-                        Parameters.Add("oauth_token", Tokens.AccessToken);
-                    }
-                    else
-                    {
-                        Parameters["oauth_token"] = Tokens.AccessToken;
-                    }
-                }
-
-                if (!string.IsNullOrEmpty(Tokens.AccessTokenSecret))
-                {
-                    if (!Parameters.ContainsKey("oauth_token_secret"))
-                    {
-                        Parameters.Add("oauth_token_secret", Tokens.AccessTokenSecret);
-                    }
-                    else
-                    {
-                        Parameters["oauth_token_secret"] = Tokens.AccessTokenSecret;
-                    }
-
-                }
-                //Signature generation with using parametres
-                var signature = GenerateSignature();
-                if (!Parameters.ContainsKey("oauth_signature"))
-                {
-                    Parameters.Add("oauth_signature", signature);
-                }
-                else
-                {
-                    Parameters["oauth_signature"] = signature;
+                    Parameters["oauth_token_secret"] = Tokens.AccessTokenSecret;
                 }
 
             }
-            catch (Exception e)
+            //Signature generation with using parametres
+            var signature = GenerateSignature();
+            if (!Parameters.ContainsKey("oauth_signature"))
             {
-                int i;
+                Parameters.Add("oauth_signature", signature);
+            }
+            else
+            {
+                Parameters["oauth_signature"] = signature;
             }
         }
 
@@ -258,6 +245,7 @@ namespace Twitty.OAuth
         * The value for this request was generated by base64 
         * encoding 32 bytes of random data, and stripping out all non-word characters,
         * but any approach which produces a relatively random alphanumeric string should be OK here.*/
+
         public static string GenerateNonce()
         {
             return new Random()
@@ -270,10 +258,12 @@ namespace Twitty.OAuth
          * and should be easily generated in most programming languages. 
          * Twitter will reject requests which were created too far in the past, 
          * so it is important to keep the clock of the computer generating requests in sync with NTP.*/
+
         public static string GenerateTimeStamp()
         {
             var timeStamp = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            return Convert.ToInt64(timeStamp.TotalSeconds, CultureInfo.CurrentCulture).ToString(CultureInfo.CurrentCulture);
+            return
+                Convert.ToInt64(timeStamp.TotalSeconds, CultureInfo.CurrentCulture).ToString(CultureInfo.CurrentCulture);
         }
 
         /*The oauth_signature parameter contains a value which is generated by running
@@ -281,6 +271,7 @@ namespace Twitty.OAuth
          * The purpose of the signature is so that Twitter can verify
          * that the request has not been modified in transit, verify the application sending the request,
          * and verify that the application has authorization to interact with the user’s account.*/
+
         public string GenerateSignature()
         {
             //Selection of public parametres
@@ -327,7 +318,7 @@ namespace Twitty.OAuth
                 .Replace(")", "%29")
                 .Replace("'", "%27")
                 .Replace("*", "%2A");
-                
+
             str = str.Replace("%7E", "~");
 
             return str;
@@ -345,6 +336,7 @@ namespace Twitty.OAuth
             newUrl += url.AbsolutePath;
             return newUrl;
         }
+
         //Url encode for object of interface IEnumerable
         private static string UrlEncode(IEnumerable<KeyValuePair<string, object>> parameters)
         {
@@ -378,12 +370,14 @@ namespace Twitty.OAuth
             var parametersBuilder = new StringBuilder(RequestUri.AbsoluteUri);
             parametersBuilder.Append(RequestUri.Query.Length == 0 ? "?" : "&");
 
-            var fields = new Dictionary<string, object>(Parameters.Where(param => !ParametersInHeader.Contains(param.Key) &&
-                                         !PublicParameters.Contains(param.Key)).ToDictionary(param => param.Key, param => param.Value));
+            var fields =
+                new Dictionary<string, object>(Parameters.Where(param => !ParametersInHeader.Contains(param.Key) &&
+                                                                         !PublicParameters.Contains(param.Key))
+                    .ToDictionary(param => param.Key, param => param.Value));
 
             foreach (var variable in fields.Where(value => value.Value is string))
             {
-                parametersBuilder.AppendFormat("{0}={1}&", variable.Key, UrlEncode((string)variable.Value));
+                parametersBuilder.AppendFormat("{0}={1}&", variable.Key, UrlEncode((string) variable.Value));
             }
 
             if (parametersBuilder.Length == 0)

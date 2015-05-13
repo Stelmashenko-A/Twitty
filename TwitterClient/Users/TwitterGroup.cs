@@ -6,8 +6,6 @@ namespace TwitterClient.Users
 {
     class TwitterGroup:List<TwitterUser>
     {
-        
-
         public TwitterGroup()
         {
         }

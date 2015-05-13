@@ -12,13 +12,19 @@ namespace Twitty.Streaming
     public class TwitterStream
     {
         private readonly ISender<string> _sender;
+
         private readonly OAuthTokens _tokens;
+
         private readonly string _streamUrl;
+
         private readonly List<string> _trackKeywords;
+
         private readonly List<string> _followUserId;
+
         private readonly List<string> _locationCoord;
 
-        public TwitterStream(ISender<string> sender, OAuthTokens tokens, string streamUrl, List<string> trackKeywords, List<string> followUserId, List<string> locationCoord)
+        public TwitterStream(ISender<string> sender, OAuthTokens tokens, string streamUrl, List<string> trackKeywords,
+            List<string> followUserId, List<string> locationCoord)
         {
             _sender = sender;
             _tokens = tokens;
@@ -28,11 +34,7 @@ namespace Twitty.Streaming
             _locationCoord = locationCoord;
         }
 
-        public int Counter
-        {
-            get { return _counter; }
-            set { _counter = value; }
-        }
+        public int Counter { get; set; }
 
         public void Start()
         {
@@ -40,14 +42,12 @@ namespace Twitty.Streaming
             {
                 throw new ArgumentNullException(_tokens.ToString());
             }
-            //Twitter Streaming API
-            
 
             HttpWebRequest webRequest = null;
             HttpWebResponse webResponse = null;
             StreamReader responseStream = null;
 
-            StringBuilder post = new StringBuilder("");
+            var post = new StringBuilder("");
             if (_trackKeywords.Count != 0)
             {
                 post.Append("&track=");
@@ -63,10 +63,9 @@ namespace Twitty.Streaming
                 post.Append("&locations=");
                 post.Append(Joiner.Join(_locationCoord, ","));
             }
+
             post.Append("&filter_level=none");
-            string postparameters = post.ToString();
-
-
+            var postparameters = post.ToString();
             if (!string.IsNullOrEmpty(postparameters))
             {
                 if (postparameters.IndexOf('&') == 0)
@@ -74,19 +73,16 @@ namespace Twitty.Streaming
             }
 
             var pause = 0;
-
-           // Console.Beep();
             try
             {
                 while (true)
                 {
                     try
                     {
-                        //Connect
-
                         webRequest = (HttpWebRequest) WebRequest.Create(_streamUrl);
                         webRequest.Timeout = 100000;
-                        webRequest.Headers.Add("Authorization", GetAuthHeader(_tokens, _streamUrl + "?" + postparameters));
+                        webRequest.Headers.Add("Authorization",
+                            GetAuthHeader(_tokens, _streamUrl + "?" + postparameters));
 
                         var encode = Encoding.GetEncoding("utf-8");
                         if (postparameters.Length > 0)
@@ -104,34 +100,17 @@ namespace Twitty.Streaming
 
                         using (webResponse = (HttpWebResponse) webRequest.GetResponse())
                         {
-
                             // ReSharper disable once AssignNullToNotNullAttribute
                             responseStream = new StreamReader(webResponse.GetResponseStream(), encode);
                             while (true)
                             {
-
-
-
-                               
-                                   
-                                        var jsonText = responseStream.ReadLine();
-                                        _sender.Send(jsonText);
-                                    
-                                
-
-                                //_messageProcessor.Proccess(jsonText);
+                                var jsonText = responseStream.ReadLine();
+                                _sender.Send(jsonText);
                             }
                         }
                     }
                     catch (WebException ex)
                     {
-                        Console.Beep();
-                        Console.Beep();
-                        Console.Beep(); Console.Beep();
-                        Console.Beep();
-                        Console.Beep();
-                        Console.WriteLine(@"norm");
-                        Console.WriteLine(ex.Message);
                         if (ex.Status == WebExceptionStatus.ProtocolError)
                         {
                             //Twitter Docs
@@ -156,18 +135,9 @@ namespace Twitty.Streaming
                             if (pause < 16000)
                                 pause += 250;
                         }
-                        //Console.Beep();
-                        //Console.Beep();
-                        //Console.Beep();
                     }
                     catch (Exception ex)
                     {
-                        
-                        //Console.Beep();
-                        Console.Beep();
-                        Console.Beep();
-                        Console.Beep();
-                        
                         if (webResponse != null)
                         {
                             webResponse.Dispose();
@@ -175,15 +145,13 @@ namespace Twitty.Streaming
                             {
                                 responseStream.Dispose();
                                 GC.Collect();
-                                GC.Collect(GC.GetGeneration(responseStream),GCCollectionMode.Forced,true);
+                                GC.Collect(GC.GetGeneration(responseStream), GCCollectionMode.Forced, true);
                             }
                             GC.Collect(GC.GetGeneration(webResponse), GCCollectionMode.Forced, true);
                         }
                         pause = 10000;
                         Thread.Sleep(pause);
-                        Console.WriteLine(ex.Message);
-
-                    }
+                  }
                     finally
                     {
                         if (webRequest != null)
@@ -191,6 +159,7 @@ namespace Twitty.Streaming
                             webRequest.Abort();
                             webRequest = null;
                         }
+
                         if (responseStream != null)
                         {
                             responseStream.Close();
@@ -202,39 +171,22 @@ namespace Twitty.Streaming
                             webResponse.Close();
                             webResponse = null;
                         }
-                        Console.WriteLine(@"Waiting: " + pause);
                         Thread.Sleep(pause);
-                        
                     }
                 }
             }
             catch (Exception)
             {
-                Console.WriteLine(@"norm2");
-                Console.Beep();
-                //Console.WriteLine(ex.Message);
-                //Console.WriteLine("Waiting: " + pause);
                 Thread.Sleep(pause);
             }
-        }
-        
-
-
-
-        private int _counter;
-
-        public void MessageProcess(object objMessage)
-        {
-            //TODO:  Add messageProcessor
         }
 
         private static string GetAuthHeader(OAuthTokens tokens, string url)
         {
-            
+
             var wb = new WebRequestBuilder(new Uri(url), HttpVerb.Post, tokens);
             // ReSharper disable once UnusedVariable
             var resp = wb.ExecuteRequest();
-
             return wb.AuthorizationHeader;
         }
     }

@@ -14,9 +14,16 @@ namespace Twitty.Commands
     internal abstract class CommandToTwitter<T> : ICommand<T> where T : ITwitterObject
     {
         public Dictionary<string, object> Parameters { get; set; }
+
         protected TwitterOptions Options { get; set; }
 
         byte[] _responseData;
+
+        public OAuthTokens Tokens { get; private set; }
+
+        private HttpVerb Verb { get; set; }
+
+        private Uri Uri { get; set; }
 
         public abstract void Initialize();
 
@@ -28,6 +35,7 @@ namespace Twitty.Commands
             var parameters = Parameters.ToDictionary(value => value.Key, value => value.Value);
             twitterResponse.ResponseObject = default(T);
             twitterResponse.RequestUrl = Uri.AbsoluteUri;
+
             var requestBuilder = new WebRequestBuilder(Uri, Verb, Tokens);
             requestBuilder.Parameters.Clear();
             foreach (var value in parameters)
@@ -35,29 +43,17 @@ namespace Twitty.Commands
                 requestBuilder.Parameters.Add(value.Key, value.Value);
 
             }
+
             //Never delete next string: "HttpWebResponse resp = requestBuilder.ExecutedRequest;"
             //ignor ReSharper here
             var resp = requestBuilder.ExecuteRequest();
             _responseData = ConversionUtility.ReadStream(resp.GetResponseStream());
             twitterResponse.Content = Encoding.UTF8.GetString(_responseData, 0, _responseData.Length);
             twitterResponse.ResponseObject = Serializer<T>.Deseialize(_responseData);
+
             return twitterResponse;
         }
 
-        public OAuthTokens Tokens { get; private set; }
-
-        private HttpVerb Verb { get; set; }
-
-        private Uri Uri { get; set; }
-
-        protected CommandToTwitter(HttpVerb method, string endPoint, OAuthTokens tokens, byte[] responseData)
-        {
-            Parameters = new Dictionary<string, object>();
-            Verb = method;
-            Tokens = tokens;
-            _responseData = responseData;
-            Uri = new Uri(endPoint);
-        }
         protected CommandToTwitter(HttpVerb method, string endPoint, OAuthTokens tokens, TwitterOptions options)
         {
             Parameters = new Dictionary<string, object>();
@@ -66,6 +62,7 @@ namespace Twitty.Commands
             Options = options ?? new TwitterOptions();
             SetCommandUri(endPoint);
         }
+
         protected void SetCommandUri(string endPoint)
         {
             if (endPoint.StartsWith("/"))

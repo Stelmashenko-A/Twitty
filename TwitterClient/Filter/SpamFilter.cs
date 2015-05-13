@@ -6,11 +6,12 @@ namespace TwitterClient.Filter
     {
         public override bool IsValid(TwitterStatus item)
         {
-            if (_invalidParams.Contains(item.Text))
+            if (InvalidParams.Contains(item.Text))
             {
                 return false;
             }
-            _invalidParams.Add(item.Text);
+
+            InvalidParams.Add(item.Text);
             return true;
         }
     }

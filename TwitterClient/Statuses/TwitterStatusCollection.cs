@@ -5,6 +5,5 @@ namespace TwitterClient.Statuses
 {
     class TwitterStatusCollection:List<TwitterStatus>
     {
-        
     }
 }

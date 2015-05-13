@@ -36,17 +36,20 @@ namespace TwitterControls
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.label1 = new MaterialSkin.Controls.MaterialLabel();
             this.SuspendLayout();
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Depth = 0;
+            this.label1.Font = new System.Drawing.Font("Roboto", 11F);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.MouseState = MaterialSkin.MouseState.HOVER;
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(438, 50);
-            this.label1.TabIndex = 2;
+            this.label1.Size = new System.Drawing.Size(438, 60);
+            this.label1.TabIndex = 3;
             this.label1.Text = "123456789012345678901234567890123456789012345678901234567890123456789012345678901" +
     "23456789012345678901234567890123456789012345678901234567890";
             // 
@@ -58,14 +61,13 @@ namespace TwitterControls
             this.MinimumSize = new System.Drawing.Size(400, 60);
             this.Name = "TweetControl";
             this.Size = new System.Drawing.Size(435, 80);
-            this.Load += new System.EventHandler(this.TweetControl_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Label label1;
         private CheckBox FavouriteCheckBox;
+        private MaterialLabel label1;
     }
 }

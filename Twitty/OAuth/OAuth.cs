@@ -15,12 +15,14 @@ namespace Twitty.OAuth
             var webRequestBuilder = new WebRequestBuilder(new Uri("https://api.twitter.com/oauth/request_token"),
                 HttpVerb.Post, new OAuthTokens {ConsumerKey = consumerKey, ConsumerSecret = consumerSecret});
             var result = string.Empty;
+
             var httpWebResponse = webRequestBuilder.ExecuteRequest();
             var stream = httpWebResponse.GetResponseStream();
             if (stream != null)
             {
                 result = new StreamReader(stream).ReadToEnd();
             }
+
             return new GettingOAuthTokens()
             {
                 Token = ParseQuerystringParameter("oauth_token", result),
@@ -43,7 +45,6 @@ namespace Twitty.OAuth
             Process.Start(requestUrl);
             dataReader.Show();
             tokens.VerificationString = dataReader.Data;
-
         }
 
         public static GettingOAuthTokens GetAccessTokens(string consumerKey, string consumerSecret, string requestToken,
@@ -57,6 +58,7 @@ namespace Twitty.OAuth
             var webResponse = webRequestBuilder.ExecuteRequest();
             // ReSharper disable once AssignNullToNotNullAttribute
             var twitterAnswer = new StreamReader(stream: webResponse.GetResponseStream()).ReadToEnd();
+
             var response = new GettingOAuthTokens
             {
                 Token = Regex.Match(twitterAnswer, @"oauth_token=([^&]+)").Groups[1].Value,

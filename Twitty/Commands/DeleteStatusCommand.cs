@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using Twitty.OAuth;
-using Twitty.Options;
 using Twitty.Tweets;
 
 namespace Twitty.Commands
@@ -11,9 +10,11 @@ namespace Twitty.Commands
         public DeleteStatusCommand(OAuthTokens tokens, decimal id)
             : base(
                 HttpVerb.Post,
-                string.Format(CultureInfo.InvariantCulture, "https://api.twitter.com/1.1/statuses/destroy.json"),
+                string.Format(CultureInfo.InvariantCulture,
+                    "https://api.twitter.com/1.1/statuses/destroy/" + id.ToString(CultureInfo.InvariantCulture) +
+                    ".json"),
                 tokens,
-                (TwitterOptions)null)
+                null)
         {
             Id = id;
         }

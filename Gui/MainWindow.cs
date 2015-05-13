@@ -12,14 +12,18 @@ namespace Gui
 {
     public partial class MainWindow : Form
     {
-        readonly TwitterClient.TwitterClient _service = new TwitterClient.TwitterClient(ConfigurationManager.AppSettings["consumer_key"], ConfigurationManager.AppSettings["consumer_secret"]);
+        private readonly TwitterClient.TwitterClient _service =
+            new TwitterClient.TwitterClient(ConfigurationManager.AppSettings["consumer_key"],
+                ConfigurationManager.AppSettings["consumer_secret"]);
+
         private UserProfile _userProfile;
 
-        readonly OAuthAccessToken _access = new OAuthAccessToken
+        private readonly OAuthAccessToken _access = new OAuthAccessToken
         {
             Token = ConfigurationManager.AppSettings["access_token"],
             TokenSecret = ConfigurationManager.AppSettings["access_token_secret"]
         };
+
         public MainWindow()
         {
             InitializeComponent();
@@ -28,11 +32,6 @@ namespace Gui
             TweetControl.UndoFavoriteTweetEventHandlerEvent += SetUndoFavorite;
             TweetControl.UndoRetweetEventHandlerEvent += SetUndoRetweted;
 
-        }
-
-        private void MainWindow_Load(object sender, EventArgs e)
-        {
-            
         }
 
         private void SetFavorite(object sender, TwitterStatusEventArgs e)
@@ -45,12 +44,13 @@ namespace Gui
 
         private void SetUndoFavorite(object sender, TwitterStatusEventArgs e)
         {
-            
+
             _service.UndoFavourite(new FavoriteTweetOptions()
             {
                 Id = e.Id
             });
         }
+
         private void SetRetweted(object sender, TwitterStatusEventArgs e)
         {
             _service.Retweet(new RetweetOptions()
@@ -58,19 +58,22 @@ namespace Gui
                 Id = e.Id
             });
         }
+
         private void SetUndoRetweted(object sender, TwitterStatusEventArgs e)
         {
-            _service.DeleteTweet(new DeleteTweetOptions() { Id = e.Id });
+            var myRtw = _userProfile.AuthenticatedUserRetweets[e.Id];
+            _service.DeleteTweet(new DeleteTweetOptions() {Id = myRtw});
         }
 
         private void tweetViewer1_Load_1(object sender, EventArgs e)
         {
-            
             _service.AuthenticateWith(_access.Token, _access.TokenSecret);
             IMonitor<DecoratedTwitterStatus> statusMonitor = new Monitor<DecoratedTwitterStatus>(null, tweetViewer1);
             _userProfile = new UserProfile(_service);
-            Decorator<TwitterStatus, DecoratedTwitterStatus> tweetDecorator = new TwitterStatusDecorator(statusMonitor, _userProfile);
-            IAsyncResult result = _service.ListTweetsOnHomeTimeline(new ListTweetsOnHomeTimelineOptions() { Count = 100 },
+            Decorator<TwitterStatus, DecoratedTwitterStatus> tweetDecorator = new TwitterStatusDecorator(statusMonitor,
+                _userProfile);
+
+            var result = _service.ListTweetsOnHomeTimeline(new ListTweetsOnHomeTimelineOptions {Count = 100},
                 (tweets, response) =>
                 {
                     if (response.StatusCode == HttpStatusCode.OK)
@@ -78,15 +81,10 @@ namespace Gui
                         tweetViewer1.SetDataFromRestApi(tweetDecorator.Decorate(tweets));
                     }
                 });
+
             result.AsyncWaitHandle.WaitOne();
             var streamSeparator = new StreamSeparator();
-
-
-
-            streamSeparator.Separate(_service,tweetDecorator);
-            
+            streamSeparator.Separate(_service, tweetDecorator);
         }
-
-
     }
 }

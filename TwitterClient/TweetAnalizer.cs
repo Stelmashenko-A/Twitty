@@ -8,6 +8,5 @@ namespace TwitterClient
         {
             return item.RetweetedStatus != null;
         }
-
     }
 }

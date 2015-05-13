@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using Twitty.Account;
 using Twitty.Kernel;
 using Twitty.OAuth;
 using Twitty.Options;
@@ -12,6 +11,7 @@ namespace Twitty.Commands
             : base(method, endPoint, tokens, options)
         {
         }
+
         public override void Initialize()
         {
             Parameters.Add("include_entities", "true");

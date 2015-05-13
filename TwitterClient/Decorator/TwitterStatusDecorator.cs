@@ -19,7 +19,9 @@ namespace TwitterClient.Decorator
             {
                 _userProfile.AuthenticatedUserRetweets.Add(item.RetweetedStatus.Id, item.Id);
             }
+
             var decoratedTwitterStatus = new DecoratedTwitterStatus(item);
+
             if (item.RetweetedStatus != null &&
                 _userProfile.AuthenticatedUserRetweets.ContainsKey(item.RetweetedStatus.Id))
             {
@@ -27,6 +29,7 @@ namespace TwitterClient.Decorator
                 decoratedTwitterStatus.MyTweetId = _userProfile.AuthenticatedUserRetweets[item.RetweetedStatus.Id];
                 return decoratedTwitterStatus;
             }
+
             if (!_userProfile.AuthenticatedUserRetweets.ContainsKey(item.Id)) return decoratedTwitterStatus;
             decoratedTwitterStatus.IsRetweted = true;
 

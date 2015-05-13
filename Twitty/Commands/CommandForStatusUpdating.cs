@@ -4,12 +4,9 @@ using Twitty.Tweets;
 
 namespace Twitty.Commands
 {
-    class CommandForStatusUpdating:CommandToTwitter<Tweet>
+    internal class CommandForStatusUpdating : CommandToTwitter<Tweet>
     {
-        public string Text
-        {
-            get; set;
-        }
+        public string Text { get; set; }
 
         public CommandForStatusUpdating(OAuthTokens tokens, string text)
             : base(HttpVerb.Post, "https://api.twitter.com/1.1/statuses/update.json", tokens, (TwitterOptions) null)

@@ -15,19 +15,16 @@ namespace Twitty.Tweets
     [SerializableAttribute]
     public class Tweet : ITwitterObject,IGeo
     {
-        //public object Annotation;
+
         [JsonProperty(PropertyName = "contributors")]
         public Collection<Contributor> Contributors { get; set; }
 
-      //  [JsonProperty(PropertyName = "coordinates")]
-        //[JsonConverter(typeof(Coordinate.Converter))]
         [DataMember, JsonProperty(PropertyName = "geo")]
         public TwitterGeo Coordinates { get; set; }
 
         [DataMember, JsonProperty(PropertyName = "created_at")]
         public String CreatedAt;
-        //public object CurrentUserRetweet{get;set;}
-        //public Entities entities {get;set;}
+
         [DataMember, JsonProperty(PropertyName = "favorite_count")]
         public int FavouriteCount { get; set; }
 
@@ -61,11 +58,9 @@ namespace Twitty.Tweets
         [DataMember, JsonProperty(PropertyName = "lang")]
         public String Lang { get; set; }
 
-        //public Places plase{get;set;}
         [DataMember, JsonProperty(PropertyName = "possibly_sensitive")]
         public Boolean PossiblySensitive { get; set; }
 
-        //public Object scopes{get;set;}
         [DataMember, JsonProperty(PropertyName = "retweet_count")]
         public int RetweetCount { get; set; }
 
@@ -84,7 +79,6 @@ namespace Twitty.Tweets
         [DataMember, JsonProperty(PropertyName = "truncated")]
         public Boolean Truncated { get; set; }
 
-        //[DataMember, JsonProperty(PropertyName = "created_at")]
         public User User { get; set; }
 
         [DataMember, JsonProperty(PropertyName = "withheld_copyright")]

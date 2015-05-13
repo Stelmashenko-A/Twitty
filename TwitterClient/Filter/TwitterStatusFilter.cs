@@ -5,7 +5,8 @@ namespace TwitterClient.Filter
 {
     abstract class TwitterTextFilter:IFilter<TwitterStatus>
     {
-        protected SortedSet<string> _invalidParams = new SortedSet<string>();
+        protected SortedSet<string> InvalidParams = new SortedSet<string>();
+
         public abstract bool IsValid(TwitterStatus item);
     }
 }

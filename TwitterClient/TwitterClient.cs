@@ -7,8 +7,7 @@ namespace TwitterClient
 {
     public sealed class TwitterClient:TwitterService
     {
-        TwitterService _twitterService = new TwitterService();
-        private OAuthTokens _currentAuthTokens = new OAuthTokens();
+        private readonly OAuthTokens _currentAuthTokens = new OAuthTokens();
 
         private TwitterUser _currentUser;
 
@@ -17,6 +16,7 @@ namespace TwitterClient
             _currentAuthTokens.ConsumerKey = consumerKey;
             _currentAuthTokens.ConsumerSecret = consumerSecret;
         }
+
         public override void AuthenticateWith(string token, string tokenSecret)
         {
             base.AuthenticateWith(token, tokenSecret);
@@ -39,19 +39,25 @@ namespace TwitterClient
         public IEnumerable<TwitterStatus> FullListTweetsOnUserTimeline()
         {
             var result = new List<TwitterStatus>();
-            int page = 0;
+            var page = 0;
             do
             {
                 var options = new ListTweetsOnUserTimelineOptions() { ScreenName = _currentUser.ScreenName, Count = 200 };
                 page++;
                 if (page > 1)
-                    options.MaxId = result.Last().Id-1;
+                {
+                    options.MaxId = result.Last().Id - 1;
+                }
 
                 var res = (List<TwitterStatus>)ListTweetsOnUserTimeline(options);
                 if (res == null || res.Count == 0)
+                {
                     break;
+                }
                 result.AddRange(res);
+
             } while (result.Count < 3200 && result.Count < _currentUser.StatusesCount);
+
             return result;
         }
 

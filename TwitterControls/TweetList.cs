@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Windows.Forms;
 using MetroFramework.Controls;
 using TwitterClient.Decorator;
 
@@ -16,8 +15,8 @@ namespace TwitterControls
         }
 
         private readonly LinkedList<TweetControl> _controls = new LinkedList<TweetControl>();
-        
-        void SetLocation(int i)
+
+        private void SetLocation(int i)
         {
             foreach (var variable in _controls)
             {
@@ -25,7 +24,7 @@ namespace TwitterControls
             }
         }
 
-        void SetScrool()
+        private void SetScrool()
         {
             if (_controls.Last.Value.Location.Y + _controls.Last.Value.Height > Height)
             {
@@ -38,13 +37,14 @@ namespace TwitterControls
             SetLocation(tweetControl.Height);
             SetScrool();
 
-            tweetControl.Location = new Point((Width - tweetControl.Width) / 2, 0);
+            tweetControl.Location = new Point((Width - tweetControl.Width)/2, 0);
 
             _controls.AddFirst(tweetControl);
             Controls.Add(tweetControl);
 
             Refresh();
         }
+
         public void Add(DecoratedTwitterStatus item)
         {
             var tweetControl = new TweetControl(item);
@@ -68,16 +68,16 @@ namespace TwitterControls
             var control = tweetControl;
 
             BeginInvoke(new Action(
-                    () => Controls.Add(control)));
+                () => Controls.Add(control)));
 
-            
+
             for (var i = 1; i < twitterStatuses.Count(); i++)
             {
-                tweetControl = new TweetControl(twitterStatuses[i]) { Location = new Point(0, location) };
+                tweetControl = new TweetControl(twitterStatuses[i]) {Location = new Point(0, location)};
                 _controls.AddFirst(tweetControl);
                 var control1 = tweetControl;
                 BeginInvoke(new Action(
-                () => Controls.Add(control1)));
+                    () => Controls.Add(control1)));
                 location += (tweetControl.Height + 5);
             }
 

@@ -5,7 +5,8 @@ using TwitterClient.Monitor;
 
 namespace TwitterClient.Decorator
 {
-    public abstract class Decorator<TIn, TOut> : IAddableAsync<TIn>, IDecorator<TIn, TOut> where TOut : IDecoratable<TIn>
+    public abstract class Decorator<TIn, TOut> : IAddableAsync<TIn>, IDecorator<TIn, TOut>
+        where TOut : IDecoratable<TIn>
     {
         private readonly IMonitor<TOut> _endPoint;
 
@@ -15,6 +16,7 @@ namespace TwitterClient.Decorator
         }
 
         public abstract TOut Decorate(TIn item);
+
         public IEnumerable<TOut> Decorate(IEnumerable<TIn> items)
         {
             return items.Select(Decorate).ToList();

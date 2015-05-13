@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using TweetSharp;
-using TwitterClient.Monitor;
 
 namespace TwitterClient
 {
@@ -23,8 +22,6 @@ namespace TwitterClient
                 var tweet = ((TwitterUserStreamStatus) streamEvent).Status;
                 statuses.AddAsync(tweet);
             });
-
-
         }
     }
 }
