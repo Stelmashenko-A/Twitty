@@ -1,7 +1,9 @@
-﻿using TweetSharp;
+﻿using System.Runtime.Serialization;
+using TweetSharp;
 
 namespace TwitterClient.Decorator
 {
+    [DataContractAttribute]
     public class DecoratedTwitterStatus : IDecoratable<TwitterStatus>
     {
         public TwitterStatus Base { get; private set; }

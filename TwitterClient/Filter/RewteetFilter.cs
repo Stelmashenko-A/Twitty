@@ -1,12 +1,15 @@
-﻿using TweetSharp;
+﻿using System;
+using TweetSharp;
+using TwitterClient.Decorator;
 
 namespace TwitterClient.Filter
 {
-    class RewteetFilter:IFilter<TwitterStatus>
+    [Serializable]
+    public class RewteetFilter : IFilter<DecoratedTwitterStatus>
     {
-        public bool IsValid(TwitterStatus item)
+        public bool IsValid(DecoratedTwitterStatus item)
         {
-            return item.RetweetedStatus == null;
+            return item.Base.RetweetedStatus == null;
         }
     }
 }

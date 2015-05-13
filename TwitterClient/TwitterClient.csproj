@@ -42,6 +42,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,7 +60,7 @@
     <Compile Include="Decorator\IDecorator.cs" />
     <Compile Include="Decorator\TwitterStatusDecorator.cs" />
     <Compile Include="Filter\RewteetFilter.cs" />
-    <Compile Include="Filter\SpamFilter.cs" />
+    <Compile Include="Filter\TextSpamFilter.cs" />
     <Compile Include="Filter\UserRetweetFilter.cs" />
     <Compile Include="IAddable.cs" />
     <Compile Include="Filter\IFilter.cs" />
@@ -70,7 +72,7 @@
     <Compile Include="StreamSeparator.cs" />
     <Compile Include="TweetAnalizer.cs" />
     <Compile Include="TwitterClient.cs" />
-    <Compile Include="Filter\TwitterStatusFilter.cs" />
+    <Compile Include="Filter\TwitterTextFilter.cs" />
     <Compile Include="UserProfile.cs" />
     <Compile Include="Users\TwitterGroup.cs" />
     <Compile Include="Statuses\TwitterStatusCollection.cs" />

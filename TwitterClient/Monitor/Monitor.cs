@@ -1,28 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using TwitterClient.Filter;
 
 namespace TwitterClient.Monitor
 {
+    [CollectionDataContract]
     public class Monitor<T>:IMonitor<T>
     {
+        
+        [DataMember]
         private readonly List<IFilter<T>> _filters;
-        private readonly IAddable<T> _database;
 
+        public IAddable<T> DataBase { get; set; }
+
+        public Monitor() { }
+
+        public Monitor(IAddable<T> database)
+        {
+            DataBase = database;
+            _filters = getFilterFromFile();
+        }
         public Monitor(List<IFilter<T>> filters, IAddable<T> database)
         {
             _filters = filters;
-            _database = database;
+            DataBase = database;
         }
 
-        private static bool IsSkiped(T data)
+        private bool IsSkiped(T data)
         {
-            //TODO create filtres
-            //return _filters.All(filter => filter.IsValid(data));
-            return true;
+            return _filters.All(filter => filter.IsValid(data));
         }
-
 
         public async Task ProccessAsync(T data)
         {
@@ -30,8 +42,27 @@ namespace TwitterClient.Monitor
             var result = await Task.Run(()=>func(data));
             if (result)
             {
-                _database.Add(data);
+                DataBase.Add(data);
             }
+        }
+
+        ~Monitor()
+        {
+            Stream testFileStream = File.Create("filters.Json");
+            
+            BinaryFormatter serializer = new BinaryFormatter();
+            serializer.Serialize(testFileStream, _filters);
+        }
+
+        private List<IFilter<T>> getFilterFromFile()
+        {
+            BinaryFormatter deser = new BinaryFormatter();
+            List<IFilter<T>> qwer;
+            Stream stream = new FileStream("filters.Json", FileMode.Open);
+            qwer = (List<IFilter<T>>)deser.Deserialize(stream);
+
+            return qwer;
+
         }
     }
 }

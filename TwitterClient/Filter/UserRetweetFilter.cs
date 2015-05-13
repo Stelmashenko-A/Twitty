@@ -1,15 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 using TweetSharp;
+using TwitterClient.Decorator;
 
 namespace TwitterClient.Filter
 {
-    internal class UserRetweetFilter : RewteetFilter
+    [Serializable]
+    [DataContract]
+    public class UserRetweetFilter : RewteetFilter
     {
+        [DataMember]
         private readonly SortedSet<long> _usersId = new SortedSet<long>();
 
-        public new bool IsValid(TwitterStatus item)
+        public new bool IsValid(DecoratedTwitterStatus item)
         {
-            return !_usersId.Contains(item.Id) || base.IsValid(item);
+            return !_usersId.Contains(item.Base.Id) || base.IsValid(item);
         }
 
         public bool BlockedUser(TwitterUser item)

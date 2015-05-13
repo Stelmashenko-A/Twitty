@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
 using System.Windows.Forms;
 using TweetSharp;
 using TwitterClient;
 using TwitterClient.Decorator;
+using TwitterClient.Filter;
 using TwitterClient.Monitor;
 using TwitterControls;
 
@@ -67,8 +69,16 @@ namespace Gui
 
         private void tweetViewer1_Load_1(object sender, EventArgs e)
         {
+            List<IFilter<DecoratedTwitterStatus>> filters = new List<IFilter<DecoratedTwitterStatus>>
+            {
+                new TextSpamFilter(),
+                new UserRetweetFilter(),
+                new RewteetFilter()
+            };
+
             _service.AuthenticateWith(_access.Token, _access.TokenSecret);
-            IMonitor<DecoratedTwitterStatus> statusMonitor = new Monitor<DecoratedTwitterStatus>(null, tweetViewer1);
+
+            IMonitor<DecoratedTwitterStatus> statusMonitor = new Monitor<DecoratedTwitterStatus>(tweetViewer1);
             _userProfile = new UserProfile(_service);
             Decorator<TwitterStatus, DecoratedTwitterStatus> tweetDecorator = new TwitterStatusDecorator(statusMonitor,
                 _userProfile);
