@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
-using System.Windows.Forms;
+using MaterialSkin.Controls;
 using TweetSharp;
 using TwitterClient;
 using TwitterClient.Decorator;
@@ -12,7 +12,7 @@ using TwitterControls;
 
 namespace Gui
 {
-    public partial class MainWindow : Form
+    public sealed partial class MainWindow : MaterialForm
     {
         private readonly TwitterClient.TwitterClient _service =
             new TwitterClient.TwitterClient(ConfigurationManager.AppSettings["consumer_key"],
@@ -29,6 +29,7 @@ namespace Gui
         public MainWindow()
         {
             InitializeComponent();
+            Refresh();
             TweetControl.FavoriteTweetEventHandlerEvent += SetFavorite;
             TweetControl.RetweetEventHandlerEvent += SetRetweted;
             TweetControl.UndoFavoriteTweetEventHandlerEvent += SetUndoFavorite;
@@ -95,6 +96,16 @@ namespace Gui
             result.AsyncWaitHandle.WaitOne();
             var streamSeparator = new StreamSeparator();
             streamSeparator.Separate(_service, tweetDecorator);
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonSendTweet_Click(object sender, EventArgs e)
+        {
+            _service.SendTweet(new SendTweetOptions() {Status = textBox1.Text});
         }
     }
 }
