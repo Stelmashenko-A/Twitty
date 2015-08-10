@@ -23,7 +23,7 @@ namespace TwitterClient.Monitor
         public Monitor(IAddable<T> database)
         {
             DataBase = database;
-            _filters = getFilterFromFile();
+            _filters = new List<IFilter<T>>();
         }
         public Monitor(List<IFilter<T>> filters, IAddable<T> database)
         {

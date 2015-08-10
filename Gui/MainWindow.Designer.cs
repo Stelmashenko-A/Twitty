@@ -84,7 +84,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.tweetViewer1);
             this.Name = "MainWindow";
-            this.Text = "Form1";
+            this.Text = "Twitter client";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

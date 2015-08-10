@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Twitty.OAuth
 {
-    public class GettingOAuthTokens
+    public class IntermediateOAuthTokens
     {
         public string Token { get; set; }
 

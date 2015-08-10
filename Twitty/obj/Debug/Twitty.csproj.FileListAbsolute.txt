@@ -17,3 +17,10 @@ C:\Users\Андрей\Source\Repos\Twitty\Twitty\obj\Debug\Twitty.csproj.Generat
 C:\Users\Андрей\Source\Repos\Twitty\Twitty\bin\Debug\Twitty.dll
 C:\Users\Андрей\Source\Repos\Twitty\Twitty\obj\Debug\Twitty.dll
 C:\Users\Андрей\Source\Repos\Twitty\Twitty\obj\Debug\Twitty.csprojResolveAssemblyReference.cache
+G:\Data\Source\Repos\Twitty\Twitty\bin\Debug\Twitty.dll
+G:\Data\Source\Repos\Twitty\Twitty\bin\Debug\Twitty.pdb
+G:\Data\Source\Repos\Twitty\Twitty\obj\Debug\Twitty.csprojResolveAssemblyReference.cache
+G:\Data\Source\Repos\Twitty\Twitty\obj\Debug\Twitty.Properties.Resources.resources
+G:\Data\Source\Repos\Twitty\Twitty\obj\Debug\Twitty.csproj.GenerateResource.Cache
+G:\Data\Source\Repos\Twitty\Twitty\obj\Debug\Twitty.dll
+G:\Data\Source\Repos\Twitty\Twitty\obj\Debug\Twitty.pdb

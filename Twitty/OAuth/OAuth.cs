@@ -9,7 +9,7 @@ namespace Twitty.OAuth
 {
     internal class OAuth
     {
-        public static GettingOAuthTokens GetRequestToken(string consumerKey, string consumerSecret,
+        public static IntermediateOAuthTokens GetRequestToken(string consumerKey, string consumerSecret,
             string callbackAddress)
         {
             var webRequestBuilder = new WebRequestBuilder(new Uri("https://api.twitter.com/oauth/request_token"),
@@ -23,7 +23,7 @@ namespace Twitty.OAuth
                 result = new StreamReader(stream).ReadToEnd();
             }
 
-            return new GettingOAuthTokens()
+            return new IntermediateOAuthTokens()
             {
                 Token = ParseQuerystringParameter("oauth_token", result),
                 TokenSecret = ParseQuerystringParameter("oauth_token_secret", result),
@@ -39,7 +39,7 @@ namespace Twitty.OAuth
             return !expression.Success ? string.Empty : expression.Groups["value"].Value;
         }
 
-        public static void GetOauthVerifier(GettingOAuthTokens tokens, IDataReader dataReader)
+        public static void GetOauthVerifier(IntermediateOAuthTokens tokens, IDataReader dataReader)
         {
             var requestUrl = "http://api.twitter.com/oauth/authorize?oauth_token=" + tokens.Token;
             Process.Start(requestUrl);
@@ -47,7 +47,7 @@ namespace Twitty.OAuth
             tokens.VerificationString = dataReader.Data;
         }
 
-        public static GettingOAuthTokens GetAccessTokens(string consumerKey, string consumerSecret, string requestToken,
+        public static IntermediateOAuthTokens GetAccessTokens(string consumerKey, string consumerSecret, string requestToken,
             string verifier)
         {
             var webRequestBuilder = new WebRequestBuilder(new Uri("https://api.twitter.com/oauth/access_token"),
@@ -59,7 +59,7 @@ namespace Twitty.OAuth
             // ReSharper disable once AssignNullToNotNullAttribute
             var twitterAnswer = new StreamReader(stream: webResponse.GetResponseStream()).ReadToEnd();
 
-            var response = new GettingOAuthTokens
+            var response = new IntermediateOAuthTokens
             {
                 Token = Regex.Match(twitterAnswer, @"oauth_token=([^&]+)").Groups[1].Value,
                 TokenSecret = Regex.Match(twitterAnswer, @"oauth_token_secret=([^&]+)").Groups[1].Value,
